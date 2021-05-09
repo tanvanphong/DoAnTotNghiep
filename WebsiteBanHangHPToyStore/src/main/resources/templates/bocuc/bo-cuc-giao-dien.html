@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	class="no-js" lang="zxx">
+
+<div th:fragment="header">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" href="/web/img/favicon.ico">
+
+	<link rel="stylesheet" href="/web/css/font-awesome.min.css">
+	<!-- Ionicons css -->
+	<link rel="stylesheet" href="/web/css/ionicons.min.css">
+	<!-- linearicons css -->
+	<link rel="stylesheet" href="/web/css/linearicons.css">
+	<!-- Nice select css -->
+	<link rel="stylesheet" href="/web/css/nice-select.css">
+	<!-- Jquery fancybox css -->
+	<link rel="stylesheet" href="/web/css/jquery.fancybox.css">
+	<!-- Jquery ui price slider css -->
+	<link rel="stylesheet" href="/web/css/jquery-ui.min.css">
+	<!-- Meanmenu css -->
+	<link rel="stylesheet" href="/web/css/meanmenu.min.css">
+	<!-- Nivo slider css -->
+	<link rel="stylesheet" href="/web/css/nivo-slider.css">
+	<!-- Owl carousel css -->
+	<link rel="stylesheet" href="/web/css/owl.carousel.min.css">
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" href="/web/css/bootstrap.min.css">
+	<!-- Custom css -->
+	<link rel="stylesheet" href="/web/css/default.css">
+	<!-- Main css -->
+	<link rel="stylesheet" href="/web/style.css">
+	<!-- Responsive css -->
+	<link rel="stylesheet" href="/web/css/responsive.css">
+	<!-- Modernizer js -->
+	<script src="/web/js/vendor/modernizr-3.5.0.min.js"></script>
+	
+</div>
+<div th:fragment="navbar">
+	<!-- Banner Popup Start -->
+
+	<!-- Banner Popup End -->
+	<!-- Newsletter Popup Start -->
+	<!-- div class="popup_wrapper">
+		<div class="test">
+			<span class="popup_off">Close</span>
+			<div class="subscribe_area text-center mt-60">
+				<h2>Bản Tin</h2>
+				<p>Đăng ký danh sách gửi thư Connection để nhận thông tin cập
+					nhật hàng mới đến, ưu đãi đặc biệt và thông tin giảm giá khác.</p>
+				<div class="subscribe-form-group">
+					<form action="#">
+						<input autocomplete="off" type="text" name="message" id="message"
+							placeholder="Vui lòng nhập Email của bạn...">
+						<button type="submit">Đăng Ký</button>
+					</form>
+				</div>
+				<div class="subscribe-bottom mt-15">
+					<input type="checkbox" id="newsletter-permission"> <label
+						for="newsletter-permission"> Đừng hiển thị cửa sổ bật lên
+						này một lần nữa.</label>
+				</div>
+			</div>
+		</div>
+	</div>-->
+
+
+
+	<div class="header-top-area">
+		<div class="container">
+			<!-- Header Top Start -->
+			<div class="header-top">
+				<ul>
+					<li><a th:href="@{/chinh-sach}">Liên Hệ</a></li>
+					<li><a th:href="@{/chinh-sach}">Địa Chỉ</a></li>
+					<li><a th:href="@{/chinh-sach}">Kết Nối</a></li>
+				</ul>
+
+				<ul>
+					<li th:if="${#request.isUserInRole('admin')}"><a role="presentation" th:href="@{/quan-ly}">Quản Lý ADMIN</a></li>
+					<li><a th:href="@{/chinh-sach}" th:text="${'Chính sách'}"></a></li>
+					<li><a th:href="@{/chinh-sach}" th:text="${'Thông báo'}"></a></li>
+					<li><a th:href="@{/chinh-sach}" th:text="${'Trợ Giúp'}"></a></li>
+					<th:block th:if="${#request.userPrincipal}">
+
+						<li><a th:href="@{/tai-khoan}"
+							th:text="${#request.userPrincipal.name}"><i
+								class="lnr lnr-chevron-down"></i></a>
+							<ul class="ht-dropdown">
+								<li th:if="${#request.isUserInRole('seller')}"><a th:href="@{/ban-hang/san-pham-cua-ban}">Bán Hàng</a></li>
+								<li th:if="${#request.isUserInRole('user')}"><a th:href="@{/khach-hang/hoa-don/hoa-don-giao-hang}">Đơn Hàng Của Tôi</a></li>
+								<li><a th:href="@{/dang-xuat}">Đăng Xuất</a></li>
+							</ul>
+						</li>
+					</th:block>
+
+					<th:block th:unless="${#request.userPrincipal}">
+
+						<li><a th:href="@{/dang-nhap}">Tài Khoản Của Tôi<i
+								class="lnr lnr-chevron-down"></i></a> <!-- Dropdown Start -->
+							<ul class="ht-dropdown">
+								<li><a th:href="@{/dang-nhap}">Đăng Nhập</a></li>
+								<li><a th:href="@{/dang-ky}">Đăng Ký</a></li>
+								
+							</ul> <!-- Dropdown End --></li>
+					</th:block>
+
+
+				</ul>
+
+			</div>
+			<!-- Header Top End -->
+		</div>
+		<!-- Container End -->
+
+		<div class="header-middle ptb-15">
+			<div class="container">
+				<div class="row align-items-center no-gutters">
+					<div class="col-lg-3 col-md-12">
+						<div class="logo mb-all-30">
+							<a th:href="@{/}"><img src="/web/img/logo/logo.png"
+								alt="logo-image"></a>
+						</div>
+					</div>
+					<!-- Categorie Search Box Start Here -->
+					<div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
+						<div class="categorie-search-box">
+							<form th:action="@{/tim-kiem}" method="GET">
+								
+								<input type="text" name="keyWord"
+									placeholder="Nhập sản phẩm cần mua...">
+								<button type="submit">
+									<i class="lnr lnr-magnifier"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+					<!-- Categorie Search Box End Here -->
+					<!-- Cart Box Start Here -->
+					<div class="col-lg-4 col-md-12">
+						<div class="cart-box mt-all-30">
+							<ul style="margin-right: 30px;"
+								class="d-flex justify-content-lg-end justify-content-center align-items-center">
+
+								<th:block th:unless="${session.giohang==null}">
+									<li><a th:href="@{/gio-hang}"><i class="lnr lnr-cart"></i><span
+											class="my-cart"><span class="total-pro"
+												th:text="${session.sl}"></span><span>giỏ hàng</span></span></a>
+										<ul class="ht-dropdown cart-box-width"  >
+											<li>
+												<!-- Cart Box Start -->
+
+												<div class="single-cart-box"
+													th:each="sp : ${session.giohang}">
+													<div class="cart-img">
+														<a
+															th:href="@{/san-pham/{id}(id=${sp.getValue().sanPham.id})}">
+															<img
+															th:src="${sp.getValue().sanPham.hinhAnh}"
+															alt="cart-image">
+														</a> <span th:text="${sp.getValue().soLuong}+'X'"
+															class="pro-quantity"></span>
+													</div>
+													<div class="cart-content">
+														<h6>
+															<a
+																th:href="@{/san-pham/{id}(id=${sp.getValue().sanPham.id})}"
+																th:text="${sp.getValue().sanPham.tenSanPham}"> </a>
+														</h6>
+														<span class="cart-price"
+															th:text="${#numbers.formatDecimal(sp.getValue().sanPham.donGia ,0, 'COMMA', 0, 'POINT')+' đ'}">
+														</span> <span th:if="${sp.getValue().soLuong!=1}"
+															class="cart-price"
+															th:text="${#numbers.formatDecimal(sp.getValue().sanPham.donGia * sp.getValue().soLuong,0, 'COMMA', 0, 'POINT')+' đ'}">
+														</span>
+														<!-- <span>Color: Yellow</span>  -->
+													</div>
+													<a class="del-icone"
+														th:href="@{'/gio-hang/xoa-san-pham-nav/{id}'(id=${sp.getValue().sanPham.id})}"><i
+														class="ion-close"></i></a>
+												</div> <!-- Cart Box End --> <!-- Cart Footer Inner Start -->
+
+												<div class="cart-footer">
+													<ul class="price-content">
+														<li>Tổng Giỏ Hàng <span
+															th:text="${#numbers.formatDecimal(session.tongtien,0, 'COMMA', 0, 'POINT')+' đ'}"></span></li>
+													</ul>
+													<div class="cart-actions text-center">
+														<a class="cart-checkout" th:href="@{/gio-hang}">Xem
+															Giỏ Hàng</a>
+													</div>
+												</div>
+
+
+
+
+											</li>
+
+										</ul></li>
+								</th:block>
+								<th:block th:if="${session.giohang==null}">
+									<li><a th:href="@{/gio-hang}"><i class="lnr lnr-cart"></i><span
+											class="my-cart"><span class="total-pro">0</span><span>giỏ
+													hàng</span></span></a>
+										<ul class="ht-dropdown cart-box-width">
+											<li>
+												<!-- Cart Box Start -->
+												<div class="single-cart-box">
+													<a> Không có sản phẩm</a> <span class="pro-quantity"></span>
+
+													<a class="del-icone" href="#"><i class="ion-close"></i></a>
+												</div> <!-- Cart Box End --> <!-- Cart Footer Inner Start -->
+												<div class="cart-footer">
+													<ul class="price-content">
+														<li>Tổng Sản Phẩm <span>000 đ</span></li>
+														<li>Shipping <span>000 đ</span></li>
+														<li>Tổng Giỏ Hàng <span>000 đ</span></li>
+													</ul>
+													<div class="cart-actions text-center">
+														<a class="cart-checkout" th:href="@{/gio-hang}">Xem
+															Giỏ Hàng</a>
+													</div>
+												</div> <!-- Cart Footer Inner End -->
+											</li>
+
+										</ul></li>
+								</th:block>
+
+								<li th:if="${#request.userPrincipal}"><a
+									th:href="@{/tai-khoan}	"> <strong
+										th:text="${#request.userPrincipal.name}"></strong>
+								</a></li>
+
+								<li th:unless="${#request.userPrincipal}"><a
+									th:href="@{/dang-nhap}"><i class="lnr lnr-user"></i><span
+										class="my-cart"> <strong>Đăng Nhập</strong>
+									</span></a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- Cart Box End Here -->
+				</div>
+				<!-- Row End -->
+			</div>
+			<!-- Container End -->
+		</div>
+		<!-- Header Bottom Start Here -->
+		<div class="header-bottom  header-sticky">
+			<div class="container">
+				<div class="row align-items-center">
+					<div
+						class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
+						<span class="categorie-title">Danh Mục Sản Phẩm</span>
+					</div>
+					<div class="col-xl-9 col-lg-8 col-md-12 ">
+						<nav class="d-none d-lg-block">
+							<ul class="header-bottom-list d-flex">
+								<li class="active"><a href="index.html">trang chủ<i></i></a>
+									<!-- Home Version Dropdown Start -->
+								<li><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
+									<!-- Home Version Dropdown Start -->
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="product.html">Deal Sốc Từ 1K</a></li>
+										<li><a href="compare.html">Voucher</a></li>
+										<li><a href="cart.html">Hàng Quốc Tế</a></li>
+										<li><a href="checkout.html">Săn Xu Mỗi Ngày</a></li>
+										<li><a href="wishlist.html">Shopping Games</a></li>
+									</ul> <!-- Home Version Dropdown End --></li>
+								<li><a href="blog.html">Tư Vấn<i class="fa fa-angle-down"></i></a>
+									<!-- Home Version Dropdown Start -->
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="single-blog.html">Đổi Trả Hàng</a></li>
+										<li><a href="single-blog.html">Hỗ Trợ </a></li>
+										<li><a href="single-blog.html">Liên Hệ</a></li>
+									</ul> <!-- Home Version Dropdown End --></li>
+								<li><a href="#">Khuyến Mãi<i class="fa fa-angle-down"></i></a> <!-- Home Version Dropdown Start -->
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="contact.html">Phiếu quà tặng</a></li>
+										<li><a href="register.html">Xu tích lũy</a></li>
+										<li><a href="login.html">Thông tin về khuyến mãi</a></li>
+									</ul> <!-- Home Version Dropdown End --></li>
+								<li><a href="about.html">Chính Sách</a></li>
+								<li><a href="contact.html">Thông Tin Về Chúng Tôi</a></li>
+							</ul>
+						</nav>
+						<div class="mobile-menu d-block d-lg-none">
+							<nav>
+								<ul>
+									<li><a href="index.html">home</a> <!-- Home Version Dropdown Start -->
+										<ul>
+											<li><a href="index.html">Home Version 1</a></li>
+											<li><a href="index-2.html">Home Version 2</a></li>
+											<li><a href="index-3.html">Home Version 3</a></li>
+											<li><a href="index-4.html">Home Version 4</a></li>
+										</ul> <!-- Home Version Dropdown End --></li>
+									<li><a href="shop.html">shop</a> <!-- Mobile Menu Dropdown Start -->
+										<ul>
+											<li><a href="product.html">product details</a></li>
+											<li><a href="compare.html">compare</a></li>
+											<li><a href="cart.html">cart</a></li>
+											<li><a href="checkout.html">checkout</a></li>
+											<li><a href="wishlist.html">wishlist</a></li>
+										</ul> <!-- Mobile Menu Dropdown End --></li>
+									<li><a href="blog.html">Blog</a> <!-- Mobile Menu Dropdown Start -->
+										<ul>
+											<li><a href="single-blog.html">blog details</a></li>
+										</ul> <!-- Mobile Menu Dropdown End --></li>
+									<li><a href="#">pages</a> <!-- Mobile Menu Dropdown Start -->
+										<ul>
+											<li><a href="register.html">register</a></li>
+											<li><a href="login.html">sign in</a></li>
+											<li><a href="forgot-password.html">forgot password</a></li>
+											<li><a href="404.html">404</a></li>
+										</ul> <!-- Mobile Menu Dropdown End --></li>
+									<li><a href="about.html">about us</a></li>
+									<li><a href="contact.html">contact us</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<!-- Row End -->
+			</div>
+			<!-- Container End -->
+		</div>
+
+	</div>
+	<div class="main-page-banner home-3">
+		<div class="container">
+			<div class="row">
+				<!-- Vertical Menu Start Here -->
+				<div class="col-xl-3 col-lg-4 d-none d-lg-block">
+					<div class="vertical-menu mb-all-30">
+						<nav>
+							<ul class="vertical-menu-list">
+								<li class=""><a><span><img
+											src="/web/img/vertical-menu/1.png" alt="menu-icon"> </span>Ô
+										Tô & Xe Máy & Xe Đạp<i class="fa fa-angle-right"
+										aria-hidden="true"></i></a>
+									<ul class="ht-dropdown mega-child">
+										<li><a href="shop.html">Xe Máy<i
+												class="fa fa-angle-right"></i></a> <!-- category submenu end-->
+											<ul class="ht-dropdown mega-child">
+												<li><a href="shop.html">Sửa Chữa Xe Máy</a></li>
+												<li><a href="shop.html">Phụ Kiện Xe Máy</a></li>
+												<li><a href="shop.html">Phụ Tùng Xe Máy</a></li>
+												<li><a href="shop.html">Chăm Sóc Xe Máy</a></li>
+											</ul> <!-- category submenu end--></li>
+										<li><a href="shop.html">Ô Tô<i
+												class="fa fa-angle-right"></i></a> <!-- category submenu end-->
+											<ul class="ht-dropdown mega-child">
+												<li><a href="shop.html">Sữa Chữa Ô Tô</a></li>
+												<li><a href="shop.html">Phụ Kiện Ô Tô</a></li>
+												<li><a href="shop.html">Phụ Tùng Ô Tô</a></li>
+												<li><a href="shop.html">Chăm Sóc Ô Tô</a></li>
+											</ul> <!-- category submenu end--></li>
+										<li><a href="shop.html">Xe Đạp Điện</a></li>
+										<li><a href="shop.html">Xe Đạp</a></li>
+									</ul> <!-- category submenu end--></li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Máy
+										Ảnh & Máy Quay Phim<i class="fa fa-angle-right"
+										aria-hidden="true"></i></a> <!-- Vertical Mega-Menu Start -->
+									<ul class="ht-dropdown megamenu megamenu-two">
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Máy Ảnh</li>
+												<li><a href="shop.html">Máy Ảnh DSLR</a></li>
+												<li><a href="shop.html">Máy Ảnh Không Gương</a></li>
+												<li><a href="shop.html">Phụ Kiện Máy Ảnh</a></li>
+											</ul>
+											<ul>
+												<li class="menu-tile">Máy Quay Phim</li>
+												<li><a href="shop.html">Phụ Kiện Máy Quay Phim</a></li>
+												<li><a href="shop.html">Thẻ Nhớ</a></li>
+												<li><a href="shop.html">Webcam</a></li>
+											</ul>
+										</li>
+									</ul> <!-- Vertical Mega-Menu End --></li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thời
+										Trang<i class="fa fa-angle-right" aria-hidden="true"></i></a> <!-- Vertical Mega-Menu Start -->
+									<ul class="ht-dropdown megamenu megamenu-two">
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Thời Trang Nam</li>
+												<li><a href="shop.html">Áo thun</a></li>
+												<li><a href="shop.html">Áo sơ mi</a></li>
+												<li><a href="shop.html">Áo Khoác & Áo Vest</a></li>
+												<li><a href="shop.html">Áo nỉ/Áo len</a></li>
+												<li><a href="shop.html">Đồ đôi</a></li>
+												<li><a href="shop.html">Quần</a></li>
+												<li><a href="shop.html">Balo/Ví/Túi</a></li>
+												<li><a href="shop.html">Mắt Kính</a></li>
+												<li><a href="shop.html">Phụ Kiện Nam</a></li>
+												<li><a href="shop.html">Đồ Trung Niên</a></li>
+												<li><a href="shop.html">Trang Sức Nam</a></li>
+												<li><a href="shop.html">Thắt Lưng</a></li>
+												<li><a href="shop.html">Đồ Lót</a></li>
+											</ul>
+										</li>
+										<!-- Single Column End -->
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Thời Trang Nữ</li>
+												<li><a href="shop.html">Áo</a></li>
+												<li><a href="shop.html">Đầm</a></li>
+												<li><a href="shop.html">Chân Váy</a></li>
+												<li><a href="shop.html">Quần</a></li>
+												<li><a href="shop.html">Set trang phục & Jumpsuit</a></li>
+												<li><a href="shop.html">Đồ đôi</a></li>
+												<li><a href="shop.html">Đồ lót, Đồ Ngủ & Đồ mặc nhà</a></li>
+												<li><a href="shop.html">Đồ bơi</a></li>
+												<li><a href="shop.html">Trang phục thể thao</a></li>
+
+											</ul>
+										</li>
+										<!-- Single Column End -->
+									</ul> <!-- Vertical Mega-Menu End --></li>
+
+								<li><a><span><img
+											src="/web/img/vertical-menu/4.png" alt="menu-icon"></span>Điện
+										Thoại & Phụ Kiện<i class="fa fa-angle-right"
+										aria-hidden="true"></i> </a> <!-- Vertical Mega-Menu Start -->
+									<ul class="ht-dropdown megamenu megamenu-two">
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Phụ Kiện</li>
+												<li><a href="shop.html">Vỏ Bao Ốp Lưng</a></li>
+												<li><a href="shop.html">Miếng Dán Điện Thoại</a></li>
+												<li><a href="shop.html">Pin Xạc Dự Phòng</a></li>
+												<li><a href="shop.html">Giá Đỡ và Kẹp</a></li>
+												<li><a href="shop.html">Sim</a></li>
+											</ul>
+										</li>
+										<!-- Single Column End -->
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Điện Thoại</li>
+												<li><a href="shop.html">Điện Thoại</a></li>
+											</ul>
+										</li>
+										<!-- Single Column End -->
+									</ul> <!-- Vertical Mega-Menu End --></li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thiết
+										Bị Điện Tử<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+									<!-- Vertical Mega-Menu Start -->
+									<ul class="ht-dropdown megamenu megamenu-two">
+										<!-- Single Column Start -->
+										<li class="single-megamenu">
+											<ul>
+												<li><a href="shop.html">Thiết Bị Âm Thanh</a></li>
+												<li><a href="shop.html">Tai Nghe</a></li>
+												<li><a href="shop.html">Thiết Bị Đeo Thông Minh</a></li>
+												<li><a href="shop.html">Android Tivi Box</a></li>
+												<li><a href="shop.html">Phụ Kiện TiVi</a></li>
+											</ul>
+										</li>
+										<!-- Single Column End -->
+										<!-- Single Column Start -->
+
+										<!-- Single Column End -->
+									</ul> <!-- Vertical Mega-Menu End --></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/7.png" alt="menu-icon"></span>Thời
+										Trang Trẻ Em</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/5.png" alt="menu-icon"></span>Làm
+										Đẹp</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/8.png" alt="menu-icon"></span>Rau Củ Quả</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/9.png" alt="menu-icon"></span>Máy Tính
+										& Laptop</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/10.png" alt="menu-icon"></span>Đồ Uống và Thức Ăn</a></li>
+								<!-- More Categoies Start -->
+								<li id="cate-toggle" class="category-menu v-cat-menu">
+									<ul>
+										<li class="has-sub"><a href="#">Xem Thêm</a>
+											<ul class="category-sub">
+												<li><a href="shop.html"><span><img
+															src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Bách Hóa Online</a></li>
+											</ul></li>
+									</ul>
+								</li>
+								<!-- More Categoies End -->
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!-- Vertical Menu End Here -->
+			</div>
+			<!-- Row End -->
+		</div>
+		<!-- Container End -->
+	</div>
+</div>
+
+
+<!-- <div th:fragment="navbar_hoantat">
+	
+	<div class="popup_wrapper">
+		<div class="test">
+			<span class="popup_off">Close</span>
+			<div class="subscribe_area text-center mt-60">
+				<h2>Bản Tin</h2>
+				<p>Đăng ký danh sách gửi thư Connection để nhận thông tin cập
+					nhật hàng mới đến, ưu đãi đặc biệt và thông tin giảm giá khác.</p>
+				<div class="subscribe-form-group">
+					<form action="#">
+						<input autocomplete="off" type="text" name="message" id="message"
+							placeholder="Enter your email address">
+						<button type="submit">Đăng Ký</button>
+					</form>
+				</div>
+				<div class="subscribe-bottom mt-15">
+					<input type="checkbox" id="newsletter-permission"> <label
+						for="newsletter-permission"> Đừng hiển thị cửa sổ bật lên
+						này một lần nữa.</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="header-top-area">
+		<div class="container">
+		
+			<div class="header-top">
+				<ul>
+					<li><a href="#">Liên Hệ</a></li>
+					<li><a href="#">Địa Chỉ</a></li>
+					<li><a href="checkout.html">Kết Nối</a></li>
+
+
+				</ul>
+
+				<ul>
+
+					<th:block th:if="${#request.userPrincipal}">
+
+						<li><a th:href="@{/tai-khoan}"
+							th:text="${#request.userPrincipal.name}"><i
+								class="lnr lnr-chevron-down"></i></a> 
+
+							<ul class="ht-dropdown"
+								th:if="${#request.userPrincipal.name} =='user'">
+								<li><a th:href="@{/ban-hang/san-pham-cua-ban}">Bán Hàng</a></li>
+								<li><a th:href="@{/dang-xuat}">Đăng Xuất</a></li>
+							</ul>
+
+
+
+							<ul class="ht-dropdown"
+								th:unless="${#request.userPrincipal.name} =='user'">
+								<li><a th:href="@{/quan-ly}">Quản Lý</a></li>
+								<li><a th:href="@{/dang-xuat}">Đăng Xuất</a></li>
+							</ul> </li>
+					</th:block>
+
+					<th:block th:unless="${#request.userPrincipal}">
+
+						<li><a th:href="@{/dang-nhap}">Tài Khoản Của Tôi<i
+								class="lnr lnr-chevron-down"></i></a>
+							<ul class="ht-dropdown">
+								<li><a th:href="@{/dang-nhap}">Đăng Nhập</a></li>
+								<li><a th:href="@{/dang-ky}">Đăng Ký</a></li>
+								<li><a th:href="@{/dang-ky-nguoi-ban}">Đăng Ký Bán Hàng</a></li>
+							</ul> </li>
+					</th:block>
+
+
+				</ul>
+
+			</div>
+			
+		</div>
+	
+
+		<div class="header-middle ptb-15">
+			<div class="container">
+				<div class="row align-items-center no-gutters">
+					<div class="col-lg-3 col-md-12">
+						<div class="logo mb-all-30">
+							<a th:href="@{/}"><img src="img/logo/logo.png"
+								alt="logo-image"></a>
+						</div>
+					</div>
+					
+					<div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
+						<div class="categorie-search-box">
+							<form action="#">
+								<div class="form-group">
+									<select class="bootstrap-select" name="poscats">
+										<option value="0">Tất cả danh mục</option>
+
+									</select>
+								</div>
+								<input type="text" name="search"
+									placeholder="Nhập sản phẩm cần mua...">
+								<button>
+									<i class="lnr lnr-magnifier"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+					
+				
+					<div class="col-lg-4 col-md-12">
+						<div class="cart-box mt-all-30">
+							<ul
+								class="d-flex justify-content-lg-end justify-content-center align-items-center">
+
+
+
+
+
+								<li th:if="${#request.userPrincipal}"><a
+									th:href="@{/tai-khoan}"><i class="lnr lnr-user"></i><span
+										class="my-cart"><span> <strong
+												th:text="${#request.userPrincipal.name}"></strong>
+										</span></span></a></li>
+								<li th:unless="${#request.userPrincipal}"><a
+									th:href="@{/dang-nhap}"><i class="lnr lnr-user"></i><span
+										class="my-cart"> <strong>Đăng Nhập</strong>
+									</span></a></li>
+
+							</ul>
+						</div>
+					</div>
+			
+				</div>
+		
+			</div>
+		
+		</div>
+	
+		<div class="header-bottom  header-sticky">
+			<div class="container">
+				<div class="row align-items-center">
+					<div
+						class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
+						<span class="categorie-title">Danh Mục Sản Phẩm</span>
+					</div>
+					<div class="col-xl-9 col-lg-8 col-md-12 ">
+						<nav class="d-none d-lg-block">
+							<ul class="header-bottom-list d-flex">
+								<li class="active"><a href="index.html">trang chủ<i></i></a>
+								
+								<li><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
+									
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="product.html">Deal Sốc Từ 1K</a></li>
+										<li><a href="compare.html">Voucher</a></li>
+										<li><a href="cart.html">Hàng Quốc Tế</a></li>
+										<li><a href="checkout.html">Săn Xu Mỗi Ngày</a></li>
+										<li><a href="wishlist.html">Shopping Games</a></li>
+									</ul> </li>
+								<li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+									
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="single-blog.html">blog details</a></li>
+									</ul> </li>
+								<li><a href="#">pages<i class="fa fa-angle-down"></i></a> 
+									<ul class="ht-dropdown dropdown-style-two">
+										<li><a href="contact.html">contact us</a></li>
+										<li><a href="register.html">register</a></li>
+										<li><a href="login.html">sign in</a></li>
+										<li><a href="forgot-password.html">forgot password</a></li>
+										<li><a href="404.html">404</a></li>
+									</ul> </li>
+								<li><a href="about.html">About us</a></li>
+								<li><a href="contact.html">contact us</a></li>
+							</ul>
+						</nav>
+						<div class="mobile-menu d-block d-lg-none">
+							<nav>
+								<ul>
+									<li><a href="index.html">home</a>
+										<ul>
+											<li><a href="index.html">Home Version 1</a></li>
+											<li><a href="index-2.html">Home Version 2</a></li>
+											<li><a href="index-3.html">Home Version 3</a></li>
+											<li><a href="index-4.html">Home Version 4</a></li>
+										</ul> </li>
+									<li><a href="shop.html">shop</a> 
+										<ul>
+											<li><a href="product.html">product details</a></li>
+											<li><a href="compare.html">compare</a></li>
+											<li><a href="cart.html">cart</a></li>
+											<li><a href="checkout.html">checkout</a></li>
+											<li><a href="wishlist.html">wishlist</a></li>
+										</ul></li>
+									<li><a href="blog.html">Blog</a> 
+										<ul>
+											<li><a href="single-blog.html">blog details</a></li>
+										</ul</li>
+									<li><a href="#">pages</a> 
+										<ul>
+											<li><a href="register.html">register</a></li>
+											<li><a href="login.html">sign in</a></li>
+											<li><a href="forgot-password.html">forgot password</a></li>
+											<li><a href="404.html">404</a></li>
+										</ul> </li>
+									<li><a href="about.html">about us</a></li>
+									<li><a href="contact.html">contact us</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+
+	</div>
+	<div class="main-page-banner home-3">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-xl-3 col-lg-4 d-none d-lg-block">
+					<div class="vertical-menu mb-all-30">
+						<nav>
+							<ul class="vertical-menu-list">
+								<li class=""><a><span><img
+											src="/web/img/vertical-menu/1.png" alt="menu-icon"> </span>Ô
+										Tô & Xe Máy & Xe Đạp<i class="fa fa-angle-right"
+										aria-hidden="true"></i></a>
+									<ul class="ht-dropdown mega-child">
+										<li><a href="shop.html">Xe Máy<i
+												class="fa fa-angle-right"></i></a> 
+											<ul class="ht-dropdown mega-child">
+												<li><a href="shop.html">Sửa Chữa Xe Máy</a></li>
+												<li><a href="shop.html">Phụ Kiện Xe Máy</a></li>
+												<li><a href="shop.html">Phụ Tùng Xe Máy</a></li>
+												<li><a href="shop.html">Chăm Sóc Xe Máy</a></li>
+											</ul> <!-- category submenu end</li>
+										<li><a href="shop.html">Ô Tô<i
+												class="fa fa-angle-right"></i></a> <!-- category submenu end
+											<ul class="ht-dropdown mega-child">
+												<li><a href="shop.html">Sữa Chữa Ô Tô</a></li>
+												<li><a href="shop.html">Phụ Kiện Ô Tô</a></li>
+												<li><a href="shop.html">Phụ Tùng Ô Tô</a></li>
+												<li><a href="shop.html">Chăm Sóc Ô Tô</a></li>
+											</ul> <!-- category submenu end--</li>
+										<li><a href="shop.html">Xe Đạp Điện</a></li>
+										<li><a href="shop.html">Xe Đạp</a></li>
+									</ul> <!-- category submenu end--</li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Máy
+										Ảnh & Máy Quay Phim<i class="fa fa-angle-right"
+										aria-hidden="true"></i></a> <!-- Vertical Mega-Menu Start --
+									<ul class="ht-dropdown megamenu megamenu-two">
+										
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Máy Ảnh</li>
+												<li><a href="shop.html">Máy Ảnh DSLR</a></li>
+												<li><a href="shop.html">Máy Ảnh Không Gương</a></li>
+												<li><a href="shop.html">Phụ Kiện Máy Ảnh</a></li>
+											</ul>
+											<ul>
+												<li class="menu-tile">Máy Quay Phim</li>
+												<li><a href="shop.html">Phụ Kiện Máy Quay Phim</a></li>
+												<li><a href="shop.html">Thẻ Nhớ</a></li>
+												<li><a href="shop.html">Webcam</a></li>
+											</ul>
+										</li>
+									</ul></li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thời
+										Trang<i class="fa fa-angle-right" aria-hidden="true"></i></a> 
+									<ul class="ht-dropdown megamenu megamenu-two">
+									
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Thời Trang Nam</li>
+												<li><a href="shop.html">Áo thun</a></li>
+												<li><a href="shop.html">Áo sơ mi</a></li>
+												<li><a href="shop.html">Áo Khoác & Áo Vest</a></li>
+												<li><a href="shop.html">Áo nỉ/Áo len</a></li>
+												<li><a href="shop.html">Đồ đôi</a></li>
+												<li><a href="shop.html">Quần</a></li>
+												<li><a href="shop.html">Balo/Ví/Túi</a></li>
+												<li><a href="shop.html">Mắt Kính</a></li>
+												<li><a href="shop.html">Phụ Kiện Nam</a></li>
+												<li><a href="shop.html">Đồ Trung Niên</a></li>
+												<li><a href="shop.html">Trang Sức Nam</a></li>
+												<li><a href="shop.html">Thắt Lưng</a></li>
+												<li><a href="shop.html">Đồ Lót</a></li>
+											</ul>
+										</li>
+								
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Thời Trang Nữ</li>
+												<li><a href="shop.html">Áo</a></li>
+												<li><a href="shop.html">Đầm</a></li>
+												<li><a href="shop.html">Chân Váy</a></li>
+												<li><a href="shop.html">Quần</a></li>
+												<li><a href="shop.html">Set trang phục & Jumpsuit</a></li>
+												<li><a href="shop.html">Đồ đôi</a></li>
+												<li><a href="shop.html">Đồ lót, Đồ Ngủ & Đồ mặc nhà</a></li>
+												<li><a href="shop.html">Đồ bơi</a></li>
+												<li><a href="shop.html">Trang phục thể thao</a></li>
+
+											</ul>
+										</li>
+										
+									</ul> </li>
+
+								<li><a><span><img
+											src="/web/img/vertical-menu/4.png" alt="menu-icon"></span>Điện
+										Thoại & Phụ Kiện<i class="fa fa-angle-right"
+										aria-hidden="true"></i> </a>
+									<ul class="ht-dropdown megamenu megamenu-two">
+										
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Phụ Kiện</li>
+												<li><a href="shop.html">Vỏ Bao Ốp Lưng</a></li>
+												<li><a href="shop.html">Miếng Dán Điện Thoại</a></li>
+												<li><a href="shop.html">Pin Xạc Dự Phòng</a></li>
+												<li><a href="shop.html">Giá Đỡ và Kẹp</a></li>
+												<li><a href="shop.html">Sim</a></li>
+											</ul>
+										</li>
+									
+										<li class="single-megamenu">
+											<ul>
+												<li class="menu-tile">Điện Thoại</li>
+												<li><a href="shop.html">Điện Thoại</a></li>
+											</ul>
+										</li>
+										
+									</ul> </li>
+								<li><a><span><img
+											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thiết
+										Bị Điện Tử<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								
+									<ul class="ht-dropdown megamenu megamenu-two">
+									
+										<li class="single-megamenu">
+											<ul>
+												<li><a href="shop.html">Thiết Bị Âm Thanh</a></li>
+												<li><a href="shop.html">Tai Nghe</a></li>
+												<li><a href="shop.html">Thiết Bị Đeo Thông Minh</a></li>
+												<li><a href="shop.html">Android Tivi Box</a></li>
+												<li><a href="shop.html">Phụ Kiện TiVi</a></li>
+											</ul>
+										</li>
+								
+
+									
+									</ul> </li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/7.png" alt="menu-icon"></span>Thời
+										Trang Trẻ Em</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/5.png" alt="menu-icon"></span>Làm
+										Đẹp</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/8.png" alt="menu-icon"></span>Fruits
+										& Veggies</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/9.png" alt="menu-icon"></span>Computer
+										& Laptop</a></li>
+								<li><a href="shop.html"><span><img
+											src="/web/img/vertical-menu/10.png" alt="menu-icon"></span>Meat
+										& Seafood</a></li>
+							
+								<li id="cate-toggle" class="category-menu v-cat-menu">
+									<ul>
+										<li class="has-sub"><a href="#">More Categories</a>
+											<ul class="category-sub">
+												<li><a href="shop.html"><span><img
+															src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>
+											</ul></li>
+									</ul>
+								</li>
+								
+							</ul>
+						</nav>
+					</div>
+				</div>
+			
+			</div>
+			
+		</div>
+		
+	</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+<div th:fragment="lib">
+	<script src="/web/js/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Countdown js -->
+	<script src="/web/js/jquery.countdown.min.js"></script>
+	<!-- Mobile menu js -->
+	<script src="/web/js/jquery.meanmenu.min.js"></script>
+	<!-- ScrollUp js -->
+	<script src="/web/js/jquery.scrollUp.js"></script>
+	<!-- Nivo slider js -->
+	<script src="/web/js/jquery.nivo.slider.js"></script>
+	<!-- Fancybox js -->
+	<script src="/web/js/jquery.fancybox.min.js"></script>
+	<!-- Jquery nice select js -->
+	<script src="/web/js/jquery.nice-select.min.js"></script>
+	<!-- Jquery ui price slider js -->
+	<script src="/web/js/jquery-ui.min.js"></script>
+	<!-- Owl carousel -->
+	<script src="/web/js/owl.carousel.min.js"></script>
+	<!-- Bootstrap popper js -->
+	<script src="/web/js/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script src="/web/js/bootstrap.min.js"></script>
+	<!-- Plugin js -->
+	<script src="/web/js/plugins.js"></script>
+	<!-- Main activaion js -->
+	<script src="/web/js/main.js"></script>
+	<script src="/admin/assets/js/jquery.twbsPagination.js" type="text/javascript"></script>
+</div>
+
+
+<div th:fragment="footer">
+	<div class="support-area bdr-top">
+		<div class="container">
+			<div class="d-flex flex-wrap text-center">
+				<div class="single-support">
+					<div class="support-icon">
+						<i class="lnr lnr-gift"></i>
+					</div>
+					<div class="support-desc">
+						<h6>Ưu Đãi Khuyến Mãi</h6>
+						<span>Hàng Deal đang chờ bạn</span>
+					</div>
+				</div>
+				<div class="single-support">
+					<div class="support-icon">
+						<i class="lnr lnr-rocket"></i>
+					</div>
+					<div class="support-desc">
+						<h6>Giao hàng tận nơi</h6>
+						<span>Giao hàng nhanh chóng tiện lợi.</span>
+					</div>
+				</div>
+				<div class="single-support">
+					<div class="support-icon">
+						<i class="lnr lnr-lock"></i>
+					</div>
+					<div class="support-desc">
+						<h6>Bảo Mật An Toàn</h6>
+						<span>Thanh Toán An Toàn và Bảo Mật</span>
+					</div>
+				</div>
+				<div class="single-support">
+					<div class="support-icon">
+						<i class="lnr lnr-enter-down"></i>
+					</div>
+					<div class="support-desc">
+						<h6>Nhiều Mẫu Mã Lựa Chọn</h6>
+						<span>Hàng trăm ngàn sản phẩm đang mong chờ từ bạn.</span>
+					</div>
+				</div>
+				<div class="single-support">
+					<div class="support-icon">
+						<i class="lnr lnr-users"></i>
+					</div>
+					<div class="support-desc">
+						<h6>Hỗ Trợ 24/7</h6>
+						<span>Luôn luôn hỗ trợ khách hàng mọi lúc.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Container End -->
+	</div>
+
+	<footer class="off-white-bg2 pt-95 bdr-top pt-sm-55">
+		<!-- Footer Top Start -->
+		<div class="footer-top">
+			<div class="container">
+				<!-- Signup Newsletter Start -->
+				<div class="row mb-60">
+					<div class="col-xl-7 col-lg-7 ml-auto mr-auto col-md-8">
+						<div class="news-desc text-center mb-30">
+							<h3>Đăng Ký Nhận Bản Tin</h3>
+							<p>Hãy là người đầu tiên biết. Đăng ký nhận bản tin ngày hôm
+								nay</p>
+						</div>
+						<div class="newsletter-box">
+							<form action="#">
+								<input class="subscribe"
+									placeholder="Vui lòng nhập địa chỉ email của bạn!" name="email"
+									id="subscribe" type="text">
+								<button type="submit" class="submit">Đăng Ký!</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- Signup-Newsletter End -->
+				<div class="row">
+					<!-- Single Footer Start -->
+					<div class="col-lg-2 col-md-4 col-sm-6">
+						<div class="single-footer mb-sm-40">
+							<h3 class="footer-title">Thông Tin</h3>
+							<div class="footer-content">
+								<ul class="footer-list">
+									<li><a href="about.html">Về Chúng Tôi</a></li>
+									<li><a href="#">Thông tin giao hàng</a></li>
+									<li><a href="#">Chính sách bảo mật</a></li>
+									<li><a href="contact.html"> Điều khoản và điều kiện</a></li>
+									<li><a href="login.html">Câu hỏi thường gặp</a></li>
+									<li><a href="login.html"> Chính sách hoàn trả</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Single Footer Start -->
+					<!-- Single Footer Start -->
+					<div class="col-lg-2 col-md-4 col-sm-6">
+						<div class="single-footer mb-sm-40">
+							<h3 class="footer-title">Dịch Vụ Khách Hàng</h3>
+							<div class="footer-content">
+								<ul class="footer-list">
+									<li><a href="contact.html"> Liên hệ chúng tôi</a></li>
+									<li><a href="#">Trả về</a></li>
+									<li><a href="#"> Lịch Sử Đơn Hàng</a></li>
+									<li><a href="wishlist.html"> Danh sách mong muốn</a></li>
+									<li><a href="#"> Sơ đồ trang web</a></li>
+									<li><a href="#"> Phiếu quà tặng</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Single Footer Start -->
+					<!-- Single Footer Start -->
+					<div class="col-lg-2 col-md-4 col-sm-6">
+						<div class="single-footer mb-sm-40">
+							<h3 class="footer-title">Ngoài ra</h3>
+							<div class="footer-content">
+								<ul class="footer-list">
+									<li><a href="#">Bản Tin</a></li>
+									<li><a href="#">Thương hiệu</a></li>
+									<li><a href="#">Phiếu quà tặng</a></li>
+									<li><a href="#"> Chi nhánh</a></li>
+									<li><a href="#"> Đặc biệt</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Single Footer Start -->
+					<!-- Single Footer Start -->
+					<div class="col-lg-2 col-md-4 col-sm-6">
+						<div class="single-footer mb-sm-40">
+							<h3 class="footer-title">Tài Khoản Của Tôi</h3>
+							<div class="footer-content">
+								<ul class="footer-list">
+									<li><a href="contact.html">Liên hệ chúng tôi</a></li>
+									<li><a href="#">Trả về</a></li>
+									<li><a href="#">Tài Khoản Của Tôi</a></li>
+									<li><a href="#">Lịch sử giao dịch</a></li>
+									<li><a href="#">Bản Tin</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Single Footer Start -->
+					<!-- Single Footer Start -->
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="single-footer mb-sm-40">
+							<h3 class="footer-title">Tài Khoản Của Tôi</h3>
+							<div class="footer-content">
+								<ul class="footer-list address-content">
+									<li><i class="lnr lnr-map-marker"></i> Địa Chỉ: 12 Nguyễn
+										Văn Bảo, Phường 4, Gò Vấp, Hồ Chí Minh.</li>
+									<li><i class="lnr lnr-envelope"></i><a href="#"> Mail
+											: baohoa0985550675@gmail.com </a></li>
+									<li><i class="lnr lnr-phone-handset"></i> Số Điện Thoại:
+										0985550675</li>
+								</ul>
+								<div class="payment mt-25 bdr-top pt-30">
+									<a href="#"><img class="img" src="/web/img/payment/1.png"
+										alt="payment-image"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Single Footer Start -->
+				</div>
+				<!-- Row End -->
+			</div>
+			<!-- Container End -->
+		</div>
+		<!-- Footer Top End -->
+		<!-- Footer Middle Start -->
+		<div class="footer-middle text-center">
+			<div class="container">
+				<div class="footer-middle-content pt-20 pb-30">
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/"><i
+								class="fa fa-twitter"></i></a></li>
+						<li><a href="https://plus.google.com/"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li><a href="https://www.linkedin.com/"><i
+								class="fa fa-linkedin"></i></a></li>
+						<li><a href="#"><img src="/web/img/icon/social-img1.png"
+								alt="google play"></a></li>
+						<li><a href="#"><img src="/web/img/icon/social-img2.png"
+								alt="app store"></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Container End -->
+		</div>
+		<!-- Footer Middle End -->
+		<!-- Footer Bottom Start -->
+		<div class="footer-bottom pb-30">
+			<div class="container">
+
+				<div class="copyright-text text-center">
+					<p>
+						Copyright © 2020 <a target="_blank" href="#">ABC toys store</a> All
+						Rights Reserved.
+					</p>
+				</div>
+			</div>
+			<!-- Container End -->
+		</div>
+		<!-- Footer Bottom End -->
+	</footer>
+
+</div>
+
+
+</html>

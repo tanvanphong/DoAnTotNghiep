@@ -51,8 +51,9 @@ public class ThongKeUtil {
 			System.out.println(d);
 
 			list.add(myItem);
+			System.out.println("abc");
 		}
-		return list;
+		return list;     
 	}
 
 	public List<MyItem> reportReceipt1(Date date, int limit) {

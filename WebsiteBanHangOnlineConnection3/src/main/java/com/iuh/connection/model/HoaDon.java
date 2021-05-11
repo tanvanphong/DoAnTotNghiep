@@ -19,14 +19,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+
 public class HoaDon implements Serializable {
 	
 
@@ -109,6 +104,82 @@ public class HoaDon implements Serializable {
 	public String toString() {
 		return "HoaDon [id=" + id + ", ngayLap=" + ngayLap + ", hinhThucThanhToan=" + hinhThucThanhToan + ", tongTien="
 				+ tongTien + ", tienShip=" + tienShip + ", trangThai=" + trangThai + "]";
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getNgayLap() {
+		return ngayLap;
+	}
+
+	public void setNgayLap(LocalDateTime ngayLap) {
+		this.ngayLap = ngayLap;
+	}
+
+	public NguoiDung getNguoiDung() {
+		return nguoiDung;
+	}
+
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+
+	public List<ChiTietHoaDon> getDssp() {
+		return dssp;
+	}
+
+	public void setDssp(List<ChiTietHoaDon> dssp) {
+		this.dssp = dssp;
+	}
+
+	public DiaChiGiaoHangHoaDon getDiaChiGiaoHang() {
+		return diaChiGiaoHang;
+	}
+
+	public void setDiaChiGiaoHang(DiaChiGiaoHangHoaDon diaChiGiaoHang) {
+		this.diaChiGiaoHang = diaChiGiaoHang;
+	}
+
+	public String getHinhThucThanhToan() {
+		return hinhThucThanhToan;
+	}
+
+	public void setHinhThucThanhToan(String hinhThucThanhToan) {
+		this.hinhThucThanhToan = hinhThucThanhToan;
+	}
+
+	public BigDecimal getTongTien() {
+		return tongTien;
+	}
+
+	public void setTongTien(BigDecimal tongTien) {
+		this.tongTien = tongTien;
+	}
+
+	public double getTienShip() {
+		return tienShip;
+	}
+
+	public void setTienShip(double tienShip) {
+		this.tienShip = tienShip;
+	}
+
+	public String getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

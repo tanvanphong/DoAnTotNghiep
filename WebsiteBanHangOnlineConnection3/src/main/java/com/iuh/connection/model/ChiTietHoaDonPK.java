@@ -4,12 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Embeddable
-@Setter
-@Getter
+
 public class ChiTietHoaDonPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -55,6 +53,26 @@ public class ChiTietHoaDonPK implements Serializable {
 		} else if (!sanPham.equals(other.sanPham))
 			return false;
 		return true;
+	}
+
+	public String getHoaDon() {
+		return hoaDon;
+	}
+
+	public void setHoaDon(String hoaDon) {
+		this.hoaDon = hoaDon;
+	}
+
+	public String getSanPham() {
+		return sanPham;
+	}
+
+	public void setSanPham(String sanPham) {
+		this.sanPham = sanPham;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

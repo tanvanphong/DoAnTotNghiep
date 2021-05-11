@@ -72,6 +72,13 @@ public class TaiKhoanServiceImpls implements ITaiKhoanService{
 		// TODO Auto-generated method stub
 		return taiKhoanRepository.timKiem(pageable, keyword);
 	}
+
+
+	@Override
+	public List<TaiKhoan> findAllTaiKhoan() {
+		// TODO Auto-generated method stub
+		return taiKhoanRepository.findAll();
+	}
 	
 	
 }

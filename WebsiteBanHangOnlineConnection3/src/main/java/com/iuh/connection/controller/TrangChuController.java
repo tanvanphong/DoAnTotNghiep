@@ -1,6 +1,7 @@
 package com.iuh.connection.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,8 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iuh.connection.model.ChiTietTimKiem;
 import com.iuh.connection.model.NguoiDung;
@@ -242,4 +246,17 @@ public class TrangChuController {
 
 		return "tim-kiem-san-pham";
 	}
+//	@GetMapping("/san-pham-id")
+//	public List<SanPham> list(){
+//		System.out.println(sanPhamService.findAllSanPham());
+//		
+//		return sanPhamService.findAllSanPham();
+//	}
+	 @RequestMapping("/san-pham-id")
+	  @ResponseBody
+	  public List<SanPham> testListJSON() {
+	   
+	    
+	    return sanPhamService.findAllSanPham();
+	  }
 }

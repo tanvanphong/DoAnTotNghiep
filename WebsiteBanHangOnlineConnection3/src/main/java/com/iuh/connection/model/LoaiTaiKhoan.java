@@ -12,12 +12,9 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Setter
-@Getter
+
 public class LoaiTaiKhoan implements Serializable {
 	/**
 	 * 
@@ -39,6 +36,34 @@ public class LoaiTaiKhoan implements Serializable {
 	@Override
 	public String toString() {
 		return "LoaiTaiKhoan [id=" + id + ", tenLoaiTaiKhoan=" + tenLoaiTaiKhoan + ", taiKhoan=" + taiKhoan + "]";
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTenLoaiTaiKhoan() {
+		return tenLoaiTaiKhoan;
+	}
+
+	public void setTenLoaiTaiKhoan(String tenLoaiTaiKhoan) {
+		this.tenLoaiTaiKhoan = tenLoaiTaiKhoan;
+	}
+
+	public Set<TaiKhoan> getTaiKhoan() {
+		return taiKhoan;
+	}
+
+	public void setTaiKhoan(Set<TaiKhoan> taiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	

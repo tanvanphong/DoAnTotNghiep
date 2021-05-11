@@ -8,12 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
-@Setter
-@Getter
+
 public class KhuyenMai implements Serializable {
 	private static final long serialVersionUID = 536044485786468627L;
 
@@ -74,6 +72,50 @@ public class KhuyenMai implements Serializable {
 		this.phanTramKhuyenMai = phanTramKhuyenMai;
 		this.giaKhuyenmai = giaKhuyenmai;
 		this.sanPhams = sanPhams;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTenKhuyenMai() {
+		return tenKhuyenMai;
+	}
+
+	public void setTenKhuyenMai(String tenKhuyenMai) {
+		this.tenKhuyenMai = tenKhuyenMai;
+	}
+
+	public double getPhanTramKhuyenMai() {
+		return phanTramKhuyenMai;
+	}
+
+	public void setPhanTramKhuyenMai(double phanTramKhuyenMai) {
+		this.phanTramKhuyenMai = phanTramKhuyenMai;
+	}
+
+	public BigDecimal getGiaKhuyenmai() {
+		return giaKhuyenmai;
+	}
+
+	public void setGiaKhuyenmai(BigDecimal giaKhuyenmai) {
+		this.giaKhuyenmai = giaKhuyenmai;
+	}
+
+	public List<SanPham> getSanPhams() {
+		return sanPhams;
+	}
+
+	public void setSanPhams(List<SanPham> sanPhams) {
+		this.sanPhams = sanPhams;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

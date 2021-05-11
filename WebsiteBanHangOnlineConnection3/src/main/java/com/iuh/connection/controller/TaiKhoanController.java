@@ -35,12 +35,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iuh.connection.model.DiaChi;
 import com.iuh.connection.model.GioHang;
 import com.iuh.connection.model.LoaiTaiKhoan;
 import com.iuh.connection.model.NguoiDung;
+import com.iuh.connection.model.SanPham;
 import com.iuh.connection.model.TaiKhoan;
 import com.iuh.connection.repository.LoaiTaiKhoanRepository;
 import com.iuh.connection.services.EmailSenderService;
@@ -119,8 +121,8 @@ public class TaiKhoanController {
 		Date date = new Date();
 		date.getClass();
 		tk.setNgayDangKy(date);
-		tk.setTrangThai(false);
-//		tk.setTrangThai(true);
+//		tk.setTrangThai(false);
+		tk.setTrangThai(true);
 		tk.setXacNhanEmail(UUID.randomUUID().toString());
 
 		khachHang.setDanhSachLienHe(new HashSet<DiaChi>(Arrays.asList(lienHe)));
@@ -404,5 +406,11 @@ public class TaiKhoanController {
 		}
 		return "redirect:/dat-hang";
 	}
-
+	 @RequestMapping("/taikhoan-mobi")
+	  @ResponseBody
+	  public List<TaiKhoan> list_taikhoan() {
+	   
+	    System.out.println(taiKhoanRepository.findAllTaiKhoan());
+	    return taiKhoanRepository.findAllTaiKhoan();
+	  }
 }

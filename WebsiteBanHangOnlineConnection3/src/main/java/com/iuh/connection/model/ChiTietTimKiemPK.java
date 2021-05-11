@@ -4,12 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Embeddable
-@Setter
-@Getter
+
 public class ChiTietTimKiemPK implements Serializable{
 
 	
@@ -55,6 +53,21 @@ public class ChiTietTimKiemPK implements Serializable{
 		} else if (!timKiem.equals(other.timKiem))
 			return false;
 		return true;
+	}
+	public String getTimKiem() {
+		return timKiem;
+	}
+	public void setTimKiem(String timKiem) {
+		this.timKiem = timKiem;
+	}
+	public String getNguoiDung() {
+		return nguoiDung;
+	}
+	public void setNguoiDung(String nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

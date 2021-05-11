@@ -26,10 +26,12 @@ public interface ITaiKhoanService {
 			boolean trangThai);
 
 	TaiKhoan findTaiKhoanByID(String id);
-
+	
 	Boolean delete(TaiKhoan taiKhoan);
 
 	Page<TaiKhoan> findAll(Pageable pageable);
 	
 	Page<TaiKhoan> timKiem(Pageable pageable,String keyword);
+	
+	List<TaiKhoan> findAllTaiKhoan();
 }

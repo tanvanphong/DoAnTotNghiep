@@ -12,15 +12,11 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @IdClass(ChiTietTimKiemPK.class)
-@Setter
-@Getter
-@EqualsAndHashCode
+
 public class ChiTietTimKiem implements Serializable{
 
 	/**
@@ -51,6 +47,50 @@ public class ChiTietTimKiem implements Serializable{
 	@Override
 	public String toString() {
 		return "ChiTietTimKiem [timkiem=" + timKiem.getId() + ", nguoiDung=" + nguoiDung.getId() + "]";
+	}
+
+	public TimKiem getTimKiem() {
+		return timKiem;
+	}
+
+	public void setTimKiem(TimKiem timKiem) {
+		this.timKiem = timKiem;
+	}
+
+	public NguoiDung getNguoiDung() {
+		return nguoiDung;
+	}
+
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+
+	public String getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public int getSoLuong() {
+		return soLuong;
+	}
+
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+
+	public LocalDateTime getThoiGianTimKiem() {
+		return thoiGianTimKiem;
+	}
+
+	public void setThoiGianTimKiem(LocalDateTime thoiGianTimKiem) {
+		this.thoiGianTimKiem = thoiGianTimKiem;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

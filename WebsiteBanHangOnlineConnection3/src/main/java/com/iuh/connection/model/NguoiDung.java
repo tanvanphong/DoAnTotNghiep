@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -21,12 +20,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
-@Setter
-@Getter
+
 public class NguoiDung implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -96,6 +93,82 @@ public class NguoiDung implements Serializable {
 	@Override
 	public String toString() {
 		return "NguoiDung [id=" + id + ", chiTietTimKiem=" + chiTietTimKiem + "]";
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getHoTen() {
+		return hoTen;
+	}
+
+	public void setHoTen(String hoTen) {
+		this.hoTen = hoTen;
+	}
+
+	public String getTenShop() {
+		return tenShop;
+	}
+
+	public void setTenShop(String tenShop) {
+		this.tenShop = tenShop;
+	}
+
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
+
+	public void setNgaySinh(LocalDate ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
+
+	public TaiKhoan getTaiKhoan() {
+		return taiKhoan;
+	}
+
+	public void setTaiKhoan(TaiKhoan taiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
+
+	public Set<HoaDon> getDanhSachHoaDon() {
+		return danhSachHoaDon;
+	}
+
+	public void setDanhSachHoaDon(Set<HoaDon> danhSachHoaDon) {
+		this.danhSachHoaDon = danhSachHoaDon;
+	}
+
+	public Set<SanPham> getDanhSachSPBan() {
+		return danhSachSPBan;
+	}
+
+	public void setDanhSachSPBan(Set<SanPham> danhSachSPBan) {
+		this.danhSachSPBan = danhSachSPBan;
+	}
+
+	public Set<DiaChi> getDanhSachLienHe() {
+		return danhSachLienHe;
+	}
+
+	public void setDanhSachLienHe(Set<DiaChi> danhSachLienHe) {
+		this.danhSachLienHe = danhSachLienHe;
+	}
+
+	public List<ChiTietTimKiem> getChiTietTimKiem() {
+		return chiTietTimKiem;
+	}
+
+	public void setChiTietTimKiem(List<ChiTietTimKiem> chiTietTimKiem) {
+		this.chiTietTimKiem = chiTietTimKiem;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

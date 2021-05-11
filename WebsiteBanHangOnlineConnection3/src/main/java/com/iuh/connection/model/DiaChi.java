@@ -11,12 +11,10 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
-@Setter
-@Getter
+
 public class DiaChi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -74,6 +72,84 @@ public class DiaChi implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	public String getHoTen() {
+		return hoTen;
+	}
+
+
+
+	public void setHoTen(String hoTen) {
+		this.hoTen = hoTen;
+	}
+
+
+
+	public String getSoDienThoai() {
+		return soDienThoai;
+	}
+
+
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
+	}
+
+
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
+
+
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+
+
+	public NguoiDung getNguoiDung() {
+		return nguoiDung;
+	}
+
+
+
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	

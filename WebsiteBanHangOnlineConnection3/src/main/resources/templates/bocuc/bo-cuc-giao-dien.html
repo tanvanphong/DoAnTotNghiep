@@ -44,7 +44,7 @@
 
 	<!-- Banner Popup End -->
 	<!-- Newsletter Popup Start -->
-	<div class="popup_wrapper">
+	<!--  div class="popup_wrapper">
 		<div class="test">
 			<span class="popup_off">Close</span>
 			<div class="subscribe_area text-center mt-60">
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 
 
@@ -91,8 +91,7 @@
 							th:text="${#request.userPrincipal.name}"><i
 								class="lnr lnr-chevron-down"></i></a>
 							<ul class="ht-dropdown">
-								<li th:if="${#request.isUserInRole('seller')}"><a
-									th:href="@{/ban-hang/san-pham-cua-ban}">Bán Hàng</a></li>
+								
 								<li th:if="${#request.isUserInRole('user')}"><a
 									th:href="@{/khach-hang/hoa-don/hoa-don-giao-hang}">Đơn Hàng
 										Của Tôi</a></li>
@@ -107,7 +106,6 @@
 							<ul class="ht-dropdown">
 								<li><a th:href="@{/dang-nhap}">Đăng Nhập</a></li>
 								<li><a th:href="@{/dang-ky}">Đăng Ký</a></li>
-								<li><a th:href="@{/dang-ky-nguoi-ban}">Đăng Ký Bán Hàng</a></li>
 							</ul> <!-- Dropdown End --></li>
 					</th:block>
 
@@ -189,69 +187,20 @@
 					<div class="col-xl-9 col-lg-8 col-md-12 ">
 						<nav class="d-none d-lg-block">
 							<ul class="header-bottom-list d-flex">
-								<li class="active"><a href="index.html">trang chủ<i></i></a>
+								<li class="active"><a href="/">trang chủ<i></i></a>
 									<!-- Home Version Dropdown Start -->
-								<li><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
+								<li><a href="/">shop<i class="fa fa-angle-down"></i></a>
 									<!-- Home Version Dropdown Start -->
-									<ul class="ht-dropdown dropdown-style-two">
-										<li><a href="product.html">Deal Sốc Từ 1K</a></li>
-										<li><a href="compare.html">Voucher</a></li>
-										<li><a href="cart.html">Hàng Quốc Tế</a></li>
-										<li><a href="checkout.html">Săn Xu Mỗi Ngày</a></li>
-										<li><a href="wishlist.html">Shopping Games</a></li>
-									</ul> <!-- Home Version Dropdown End --></li>
-								<li><a href="blog.html">Tư Vấn<i
+									 <!-- Home Version Dropdown End --></li>
+								<li><a href="/">Tư Vấn<i
 										class="fa fa-angle-down"></i></a> <!-- Home Version Dropdown Start -->
-									<ul class="ht-dropdown dropdown-style-two">
-										<li><a href="single-blog.html">Đổi Trả Hàng</a></li>
-										<li><a href="single-blog.html">Hỗ Trợ </a></li>
-										<li><a href="single-blog.html">Liên Hệ</a></li>
-									</ul> <!-- Home Version Dropdown End --></li>
-								<li><a href="#">Khuyến Mãi<i class="fa fa-angle-down"></i></a>
-									<!-- Home Version Dropdown Start -->
-									<ul class="ht-dropdown dropdown-style-two">
-										<li><a href="contact.html">Phiếu quà tặng</a></li>
-										<li><a href="register.html">Xu tích lũy</a></li>
-										<li><a href="login.html">Thông tin về khuyến mãi</a></li>
-									</ul> <!-- Home Version Dropdown End --></li>
-								<li><a href="about.html">Chính Sách</a></li>
-								<li><a href="contact.html">Thông Tin Về Chúng Tôi</a></li>
+								 <!-- Home Version Dropdown End --></li>
+							
+								<li><a th:href="@{/chinh-sach}">Chính Sách</a></li>
+								<li><a th:href="@{/chinh-sach}">Thông Tin Về Chúng Tôi</a></li>
 							</ul>
 						</nav>
-						<div class="mobile-menu d-block d-lg-none">
-							<nav>
-								<ul>
-									<li><a href="index.html">home</a> <!-- Home Version Dropdown Start -->
-										<ul>
-											<li><a href="index.html">Home Version 1</a></li>
-											<li><a href="index-2.html">Home Version 2</a></li>
-											<li><a href="index-3.html">Home Version 3</a></li>
-											<li><a href="index-4.html">Home Version 4</a></li>
-										</ul> <!-- Home Version Dropdown End --></li>
-									<li><a href="shop.html">shop</a> <!-- Mobile Menu Dropdown Start -->
-										<ul>
-											<li><a href="product.html">product details</a></li>
-											<li><a href="compare.html">compare</a></li>
-											<li><a href="cart.html">cart</a></li>
-											<li><a href="checkout.html">checkout</a></li>
-											<li><a href="wishlist.html">wishlist</a></li>
-										</ul> <!-- Mobile Menu Dropdown End --></li>
-									<li><a href="blog.html">Blog</a> <!-- Mobile Menu Dropdown Start -->
-										<ul>
-											<li><a href="single-blog.html">blog details</a></li>
-										</ul> <!-- Mobile Menu Dropdown End --></li>
-									<li><a href="#">pages</a> <!-- Mobile Menu Dropdown Start -->
-										<ul>
-											<li><a href="register.html">register</a></li>
-											<li><a href="login.html">sign in</a></li>
-											<li><a href="forgot-password.html">forgot password</a></li>
-											<li><a href="404.html">404</a></li>
-										</ul> <!-- Mobile Menu Dropdown End --></li>
-									<li><a href="about.html">about us</a></li>
-									<li><a href="contact.html">contact us</a></li>
-								</ul>
-							</nav>
-						</div>
+						
 					</div>
 				</div>
 				<!-- Row End -->
@@ -268,166 +217,16 @@
 					<div class="vertical-menu mb-all-30">
 						<nav>
 							<ul class="vertical-menu-list">
-								<li class=""><a><span><img
-											src="/web/img/vertical-menu/1.png" alt="menu-icon"> </span>Ô
-										Tô & Xe Máy & Xe Đạp<i class="fa fa-angle-right"
-										aria-hidden="true"></i></a>
-									<ul class="ht-dropdown mega-child">
-										<li><a href="shop.html">Xe Máy<i
-												class="fa fa-angle-right"></i></a> <!-- category submenu end-->
-											<ul class="ht-dropdown mega-child">
-												<li><a href="shop.html">Sửa Chữa Xe Máy</a></li>
-												<li><a href="shop.html">Phụ Kiện Xe Máy</a></li>
-												<li><a href="shop.html">Phụ Tùng Xe Máy</a></li>
-												<li><a href="shop.html">Chăm Sóc Xe Máy</a></li>
-											</ul> <!-- category submenu end--></li>
-										<li><a href="shop.html">Ô Tô<i
-												class="fa fa-angle-right"></i></a> <!-- category submenu end-->
-											<ul class="ht-dropdown mega-child">
-												<li><a href="shop.html">Sữa Chữa Ô Tô</a></li>
-												<li><a href="shop.html">Phụ Kiện Ô Tô</a></li>
-												<li><a href="shop.html">Phụ Tùng Ô Tô</a></li>
-												<li><a href="shop.html">Chăm Sóc Ô Tô</a></li>
-											</ul> <!-- category submenu end--></li>
-										<li><a href="shop.html">Xe Đạp Điện</a></li>
-										<li><a href="shop.html">Xe Đạp</a></li>
-									</ul> <!-- category submenu end--></li>
-								<li><a><span><img
-											src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Máy
-										Ảnh & Máy Quay Phim<i class="fa fa-angle-right"
-										aria-hidden="true"></i></a> <!-- Vertical Mega-Menu Start -->
-									<ul class="ht-dropdown megamenu megamenu-two">
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li class="menu-tile">Máy Ảnh</li>
-												<li><a href="shop.html">Máy Ảnh DSLR</a></li>
-												<li><a href="shop.html">Máy Ảnh Không Gương</a></li>
-												<li><a href="shop.html">Phụ Kiện Máy Ảnh</a></li>
-											</ul>
-											<ul>
-												<li class="menu-tile">Máy Quay Phim</li>
-												<li><a href="shop.html">Phụ Kiện Máy Quay Phim</a></li>
-												<li><a href="shop.html">Thẻ Nhớ</a></li>
-												<li><a href="shop.html">Webcam</a></li>
-											</ul>
-										</li>
-									</ul> <!-- Vertical Mega-Menu End --></li>
-								<li><a><span><img
-											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thời
-										Trang<i class="fa fa-angle-right" aria-hidden="true"></i></a> <!-- Vertical Mega-Menu Start -->
-									<ul class="ht-dropdown megamenu megamenu-two">
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li class="menu-tile">Thời Trang Nam</li>
-												<li><a href="shop.html">Áo thun</a></li>
-												<li><a href="shop.html">Áo sơ mi</a></li>
-												<li><a href="shop.html">Áo Khoác & Áo Vest</a></li>
-												<li><a href="shop.html">Áo nỉ/Áo len</a></li>
-												<li><a href="shop.html">Đồ đôi</a></li>
-												<li><a href="shop.html">Quần</a></li>
-												<li><a href="shop.html">Balo/Ví/Túi</a></li>
-												<li><a href="shop.html">Mắt Kính</a></li>
-												<li><a href="shop.html">Phụ Kiện Nam</a></li>
-												<li><a href="shop.html">Đồ Trung Niên</a></li>
-												<li><a href="shop.html">Trang Sức Nam</a></li>
-												<li><a href="shop.html">Thắt Lưng</a></li>
-												<li><a href="shop.html">Đồ Lót</a></li>
-											</ul>
-										</li>
-										<!-- Single Column End -->
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li class="menu-tile">Thời Trang Nữ</li>
-												<li><a href="shop.html">Áo</a></li>
-												<li><a href="shop.html">Đầm</a></li>
-												<li><a href="shop.html">Chân Váy</a></li>
-												<li><a href="shop.html">Quần</a></li>
-												<li><a href="shop.html">Set trang phục & Jumpsuit</a></li>
-												<li><a href="shop.html">Đồ đôi</a></li>
-												<li><a href="shop.html">Đồ lót, Đồ Ngủ & Đồ mặc nhà</a></li>
-												<li><a href="shop.html">Đồ bơi</a></li>
-												<li><a href="shop.html">Trang phục thể thao</a></li>
-
-											</ul>
-										</li>
-										<!-- Single Column End -->
-									</ul> <!-- Vertical Mega-Menu End --></li>
-
-								<li><a><span><img
-											src="/web/img/vertical-menu/4.png" alt="menu-icon"></span>Điện
-										Thoại & Phụ Kiện<i class="fa fa-angle-right"
-										aria-hidden="true"></i> </a> <!-- Vertical Mega-Menu Start -->
-									<ul class="ht-dropdown megamenu megamenu-two">
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li class="menu-tile">Phụ Kiện</li>
-												<li><a href="shop.html">Vỏ Bao Ốp Lưng</a></li>
-												<li><a href="shop.html">Miếng Dán Điện Thoại</a></li>
-												<li><a href="shop.html">Pin Xạc Dự Phòng</a></li>
-												<li><a href="shop.html">Giá Đỡ và Kẹp</a></li>
-												<li><a href="shop.html">Sim</a></li>
-											</ul>
-										</li>
-										<!-- Single Column End -->
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li class="menu-tile">Điện Thoại</li>
-												<li><a href="shop.html">Điện Thoại</a></li>
-											</ul>
-										</li>
-										<!-- Single Column End -->
-									</ul> <!-- Vertical Mega-Menu End --></li>
-								<li><a><span><img
-											src="/web/img/vertical-menu/6.png" alt="menu-icon"></span>Thiết
-										Bị Điện Tử<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									<!-- Vertical Mega-Menu Start -->
-									<ul class="ht-dropdown megamenu megamenu-two">
-										<!-- Single Column Start -->
-										<li class="single-megamenu">
-											<ul>
-												<li><a href="shop.html">Thiết Bị Âm Thanh</a></li>
-												<li><a href="shop.html">Tai Nghe</a></li>
-												<li><a href="shop.html">Thiết Bị Đeo Thông Minh</a></li>
-												<li><a href="shop.html">Android Tivi Box</a></li>
-												<li><a href="shop.html">Phụ Kiện TiVi</a></li>
-											</ul>
-										</li>
-										<!-- Single Column End -->
-										<!-- Single Column Start -->
-
-										<!-- Single Column End -->
-									</ul> <!-- Vertical Mega-Menu End --></li>
+								
 								<li><a href="shop.html"><span><img
-											src="/web/img/vertical-menu/7.png" alt="menu-icon"></span>Thời
-										Trang Trẻ Em</a></li>
+											src="/web/img/vertical-menu/7.png" alt="menu-icon"></span>Đồ chơi mô hình</a></li>
 								<li><a href="shop.html"><span><img
-											src="/web/img/vertical-menu/5.png" alt="menu-icon"></span>Làm
-										Đẹp</a></li>
+											src="/web/img/vertical-menu/5.png" alt="menu-icon"></span>Đồ chơi lắp ghép</a></li>
 								<li><a href="shop.html"><span><img
-											src="/web/img/vertical-menu/8.png" alt="menu-icon"></span>Rau
-										Củ Quả</a></li>
+											src="/web/img/vertical-menu/8.png" alt="menu-icon"></span>Đồ chơi thủ công, mỹ thuật</a></li>
 								<li><a href="shop.html"><span><img
-											src="/web/img/vertical-menu/9.png" alt="menu-icon"></span>Máy
-										Tính & Laptop</a></li>
-								<li><a href="shop.html"><span><img
-											src="/web/img/vertical-menu/10.png" alt="menu-icon"></span>Đồ
-										Uống và Thức Ăn</a></li>
-								<!-- More Categoies Start -->
-								<li id="cate-toggle" class="category-menu v-cat-menu">
-									<ul>
-										<li class="has-sub"><a href="#">Xem Thêm</a>
-											<ul class="category-sub">
-												<li><a href="shop.html"><span><img
-															src="/web/img/vertical-menu/11.png" alt="menu-icon"></span>Bách
-														Hóa Online</a></li>
-											</ul></li>
-									</ul>
-								</li>
+											src="/web/img/vertical-menu/9.png" alt="menu-icon"></span>Đồ chơi giải đố</a></li>
+								
 								<!-- More Categoies End -->
 							</ul>
 						</nav>
@@ -546,23 +345,7 @@
 		<div class="footer-top">
 			<div class="container">
 				<!-- Signup Newsletter Start -->
-				<div class="row mb-60">
-					<div class="col-xl-7 col-lg-7 ml-auto mr-auto col-md-8">
-						<div class="news-desc text-center mb-30">
-							<h3>Đăng Ký Nhận Bản Tin</h3>
-							<p>Hãy là người đầu tiên biết. Đăng ký nhận bản tin ngày hôm
-								nay</p>
-						</div>
-						<div class="newsletter-box">
-							<form action="#">
-								<input class="subscribe"
-									placeholder="Vui lòng nhập địa chỉ email của bạn!" name="email"
-									id="subscribe" type="text">
-								<button type="submit" class="submit">Đăng Ký!</button>
-							</form>
-						</div>
-					</div>
-				</div>
+				
 				<!-- Signup-Newsletter End -->
 				<div class="row">
 					<!-- Single Footer Start -->
@@ -640,9 +423,9 @@
 									<li><i class="lnr lnr-map-marker"></i> Địa Chỉ: 12 Nguyễn
 										Văn Bảo, Phường 4, Gò Vấp, Hồ Chí Minh.</li>
 									<li><i class="lnr lnr-envelope"></i><a href="#"> Mail
-											: phungacd13@gmail.com </a></li>
+											: baohoa0985550675@gmail.com </a></li>
 									<li><i class="lnr lnr-phone-handset"></i> Số Điện Thoại:
-										0332286105</li>
+										0985550675</li>
 								</ul>
 								<div class="payment mt-25 bdr-top pt-30">
 									<a href="#"><img class="img" src="/web/img/payment/1.png"
@@ -687,7 +470,7 @@
 
 				<div class="copyright-text text-center">
 					<p>
-						Copyright © 2020 <a target="_blank" href="#">Connection</a> All
+						Copyright © 2020 <a target="_blank" href="#">ABC Toys Store</a> All
 						Rights Reserved.
 					</p>
 				</div>

@@ -63,7 +63,17 @@ public class NguoiDung implements Serializable {
 	@OneToMany(mappedBy = "nguoiDung",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ChiTietTimKiem> chiTietTimKiem;
 	
+	
 
+	public NguoiDung() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public NguoiDung(String id) {
+		super();
+		this.id = id;
+	}
 
 	@Override
 	public int hashCode() {

@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>CONNECTION</title>
+<title>ABC Store</title>
 <!-- Favicons -->
 <link rel="shortcut icon" href="/web/img/favicon.ico">
 <!-- Fontawesome css -->
@@ -160,11 +160,11 @@
 
 	<script type="text/javascript">
 	
-var currentPage = [[${currentPage}]];
+var currentPage = [[$,{currentPage}]];
 	
 	$(function() {
 		window.pagObj = $('#pagination').twbsPagination({
-			totalPages : [[${totalPage}]],
+			totalPages : [[$,{totalPage}]],
 			visiblePages : 10,
 			startPage: currentPage,
 			onPageClick : function(event, page) {

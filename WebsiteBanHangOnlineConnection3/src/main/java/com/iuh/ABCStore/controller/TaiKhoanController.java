@@ -117,7 +117,7 @@ public class TaiKhoanController {
 		ltk.add(loai);
 		tk.setLoaiTaiKhoan(ltk);
 		tk.setMatKhau(bCryptPasswordEncoder.encode(tk.getMatKhau()));
-
+//		tk.setMatKhau(tk.getMatKhau());
 		Date date = new Date();
 		date.getClass();
 		tk.setNgayDangKy(date);
@@ -136,18 +136,18 @@ public class TaiKhoanController {
 			modelAndView.setViewName("/dang-ky");
 		} else if (nguoiDungRepository.saveNguoiDung(khachHang) != null) {
 
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			mailMessage.setTo(tk.getTenTaiKhoanEmail());
-			mailMessage.setSubject("Xac nhan email tai khoan");
-			mailMessage.setFrom("khuongvo50@gmail.com");
-			mailMessage.setText("Nhấn vào link bên dưới để xác nhận tài khoản của bạn ");
-			mailMessage.setText("http://localhost:8099/xac-nhan-email?token=" + tk.getXacNhanEmail());
-
-			emailSenderService.sendEmail(mailMessage);
-
-			model.addAttribute("mess", "Xin chào *" + khachHang.getHoTen() + " vui lòng đăng nhập email "
-					+ "để xác nhận tài khoản của bạn");
-			modelAndView.setViewName("/dang-nhap");
+//			SimpleMailMessage mailMessage = new SimpleMailMessage();
+//			mailMessage.setTo(tk.getTenTaiKhoanEmail());
+//			mailMessage.setSubject("Xac nhan email tai khoan");
+//			mailMessage.setFrom("baohoa098550675@gmail.com");
+//			mailMessage.setText("Nhấn vào link bên dưới để xác nhận tài khoản của bạn ");
+//			mailMessage.setText("http://localhost:8099/xac-nhan-email?token=" + tk.getXacNhanEmail());
+//
+//			emailSenderService.sendEmail(mailMessage);
+//
+//			model.addAttribute("mess", "Xin chào *" + khachHang.getHoTen() + " vui lòng đăng nhập email "
+//					+ "để xác nhận tài khoản của bạn");
+//			modelAndView.setViewName("/dang-nhap");
 		} else {
 
 			modelAndView.setViewName("/dang-ky");
@@ -155,27 +155,27 @@ public class TaiKhoanController {
 
 		return modelAndView;
 	}
-
-	@RequestMapping(value = "/xac-nhan-email", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView xacNhanEmailDangKy(ModelAndView modelAndView, @RequestParam("token") String confirmationToken,
-			@ModelAttribute("taikhoan") TaiKhoan taiKhoan, Model model) {
-
-		TaiKhoan token = taiKhoanRepository.findByXacNhanEmail(confirmationToken);
-		System.err.println(token);
-		if (token != null) {
-			token.setTrangThai(true);
-			System.err.println(token);
-
-			taiKhoanRepository.save(token);
-
-			modelAndView.setViewName("/dang-nhap");
-
-		} else {
-			model.addAttribute("mess", "Link đã hỏng @@!");
-			modelAndView.setViewName("/dang-ky");
-		}
-		return modelAndView;
-	}
+//
+//	@RequestMapping(value = "/xac-nhan-email", method = { RequestMethod.GET, RequestMethod.POST })
+//	public ModelAndView xacNhanEmailDangKy(ModelAndView modelAndView, @RequestParam("token") String confirmationToken,
+//			@ModelAttribute("taikhoan") TaiKhoan taiKhoan, Model model) {
+//
+//		TaiKhoan token = taiKhoanRepository.findByXacNhanEmail(confirmationToken);
+//		System.err.println(token);
+//		if (token != null) {
+//			token.setTrangThai(true);
+//			System.err.println(token);
+//
+//			taiKhoanRepository.save(token);
+//
+//			modelAndView.setViewName("/dang-nhap");
+//
+//		} else {
+//			model.addAttribute("mess", "Link đã hỏng @@!");
+//			modelAndView.setViewName("/dang-ky");
+//		}
+//		return modelAndView;
+//	}
 
 	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -217,10 +217,10 @@ public class TaiKhoanController {
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setTo(taiKhoan1.getTenTaiKhoanEmail());
 			mailMessage.setSubject("Lay Lai Mat Khau");
-			mailMessage.setFrom("khuongvo50@gmail.com");
+			mailMessage.setFrom("baohoa0985550675@gmail.com");
 			mailMessage.setText(
 					"Xin chào " + taiKhoan1.getTenTaiKhoanEmail() + " vui lòng click vào link để lấy lại mật khẩu ");
-			mailMessage.setText("http://localhost:8099/lay-lai-mat-khau?token=" + taiKhoan1.getXacNhanEmail());
+			mailMessage.setText("http://localhost:8090/lay-lai-mat-khau?token=" + taiKhoan1.getXacNhanEmail());
 
 			emailSenderService.sendEmail(mailMessage);
 		}

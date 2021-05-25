@@ -71,7 +71,84 @@ public class SanPhamController {
 	private String bucketName;
 
 
-	@RequestMapping("/ban-hang/them-san-pham-moi")
+//	@RequestMapping("/quan-ly/san-pham/them-san-pham-moi")
+//	public String saveSanPham(Model model, @ModelAttribute("danhMuc") DanhMuc danhMuc,
+//			@ModelAttribute("sanPham") SanPham sanPham) {
+//
+//		List<DanhMuc> danhMucs = danhMucRepository.findAllLoaiSanPham();
+//		model.addAttribute("listDanhMuc", danhMucs);
+//
+//		sanPham.setDanhMuc(danhMuc);
+//		return "/quan-ly/san-pham/them-san-pham-moi";
+//	}
+//
+//	@PostMapping(value = "/quan-ly/san-pham/them-san-pham-moi")
+//	public String xuLyThemSanPham(Model model, @ModelAttribute("sanPham") SanPham sanPham, HttpServletRequest request,
+//			@RequestPart(value = "file") MultipartFile file, @RequestPart(value = "file1") MultipartFile file1,
+//			@RequestPart(value = "file2") MultipartFile file2, @RequestPart(value = "file3") MultipartFile file3)
+//			throws Exception {
+//
+//		TaiKhoan taiKhoan = taiKhoanRepository
+//				.findByTenTaiKhoanEmail("admin@gmail.com");
+//		NguoiDung khachHang = taiKhoan.getNguoiDung();
+//		sanPham.setNguoiDung(khachHang);
+//		sanPham.setTrangThai("Đã Xác Nhận");
+//		sanPham.setNgayTao(LocalDate.now());
+//
+//		
+////		File filecv = this.amazonClient.convertMultiPartToFile(file);
+////		String fileName = this.amazonClient.generateFileName(file);
+////		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
+////		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
+////		filecv.delete();
+////
+////		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
+////		String fileName1 = this.amazonClient.generateFileName(file1);
+////		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
+////		this.amazonClient.uploadFileTos3bucket(fileName1, filecv1);
+////		filecv1.delete();
+////
+////		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
+////		String fileName2 = this.amazonClient.generateFileName(file2);
+////		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
+////		this.amazonClient.uploadFileTos3bucket(fileName2, filecv2);
+////		filecv2.delete();
+////
+////		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
+////		String fileName3 = this.amazonClient.generateFileName(file3);
+////		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
+////		this.amazonClient.uploadFileTos3bucket(fileName3, filecv3);
+////		filecv3.delete();
+////
+////		sanPham.setHinhAnh(fileUrl);
+////		sanPham.setHinhAnh1(fileUrl1);
+////		sanPham.setHinhAnh2(fileUrl2);
+////		sanPham.setHinhAnh3(fileUrl3);
+//
+////		System.err.println(sanPham);
+//
+//		sanPhamRepository.saveSanPham(sanPham);
+//		model.addAttribute("tx", "Thêm sản phẩm mới thành công, " + "Tiếp tục thêm sản phẩm mới");
+//
+//		return "redirect:/quan-ly/san-pham/them-san-pham-moi";
+//
+//	}
+//
+//	@RequestMapping(value = "/ban-hang/sua-san-pham/{id}")
+//	public String updateSanPham(Model model, @ModelAttribute("sanPham") SanPham sanPham,
+//			@ModelAttribute("danhMuc") DanhMuc danhMuc, @PathVariable(name = "id") String id) {
+//
+//		sanPham = sanPhamRepository.findSanPhamById(id).get();
+//
+//		List<DanhMuc> danhMucs = danhMucRepository.findAllLoaiSanPham();
+//		System.out.println();
+//		model.addAttribute("listDanhMuc", danhMucs);
+//
+//		model.addAttribute("sanPham", sanPham);
+//
+//		return "sua-san-pham";
+//	}
+	@RequestMapping("/quan-ly/san-pham/them-san-pham-moi")
 	public String saveSanPham(Model model, @ModelAttribute("danhMuc") DanhMuc danhMuc,
 			@ModelAttribute("sanPham") SanPham sanPham) {
 
@@ -82,7 +159,7 @@ public class SanPhamController {
 		return "them-san-pham-moi-2";
 	}
 
-	@PostMapping(value = "/ban-hang/them-san-pham-moi")
+	@PostMapping(value = "/quan-ly/san-pham/them-san-pham-moi")
 	public String xuLyThemSanPham(Model model, @ModelAttribute("sanPham") SanPham sanPham, HttpServletRequest request,
 			@RequestPart(value = "file") MultipartFile file, @RequestPart(value = "file1") MultipartFile file1,
 			@RequestPart(value = "file2") MultipartFile file2, @RequestPart(value = "file3") MultipartFile file3)
@@ -92,45 +169,45 @@ public class SanPhamController {
 				.findByTenTaiKhoanEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 		NguoiDung khachHang = taiKhoan.getNguoiDung();
 		sanPham.setNguoiDung(khachHang);
-		sanPham.setTrangThai("Chưa Xác Nhận");
+		sanPham.setTrangThai("Đã Xác Nhận");
 		sanPham.setNgayTao(LocalDate.now());
 
 		
-		File filecv = this.amazonClient.convertMultiPartToFile(file);
-		String fileName = this.amazonClient.generateFileName(file);
-		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
-		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
-		filecv.delete();
-
-		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
-		String fileName1 = this.amazonClient.generateFileName(file1);
-		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
-		this.amazonClient.uploadFileTos3bucket(fileName1, filecv1);
-		filecv1.delete();
-
-		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
-		String fileName2 = this.amazonClient.generateFileName(file2);
-		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
-		this.amazonClient.uploadFileTos3bucket(fileName2, filecv2);
-		filecv2.delete();
-
-		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
-		String fileName3 = this.amazonClient.generateFileName(file3);
-		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
-		this.amazonClient.uploadFileTos3bucket(fileName3, filecv3);
-		filecv3.delete();
-
-		sanPham.setHinhAnh(fileUrl);
-		sanPham.setHinhAnh1(fileUrl1);
-		sanPham.setHinhAnh2(fileUrl2);
-		sanPham.setHinhAnh3(fileUrl3);
+//		File filecv = this.amazonClient.convertMultiPartToFile(file);
+//		String fileName = this.amazonClient.generateFileName(file);
+//		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
+//		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
+//		filecv.delete();
+//
+//		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
+//		String fileName1 = this.amazonClient.generateFileName(file1);
+//		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
+//		this.amazonClient.uploadFileTos3bucket(fileName1, filecv1);
+//		filecv1.delete();
+//
+//		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
+//		String fileName2 = this.amazonClient.generateFileName(file2);
+//		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
+//		this.amazonClient.uploadFileTos3bucket(fileName2, filecv2);
+//		filecv2.delete();
+//
+//		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
+//		String fileName3 = this.amazonClient.generateFileName(file3);
+//		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
+//		this.amazonClient.uploadFileTos3bucket(fileName3, filecv3);
+//		filecv3.delete();
+//
+//		sanPham.setHinhAnh(fileUrl);
+//		sanPham.setHinhAnh1(fileUrl1);
+//		sanPham.setHinhAnh2(fileUrl2);
+//		sanPham.setHinhAnh3(fileUrl3);
 
 		System.err.println(sanPham);
 
 		sanPhamRepository.saveSanPham(sanPham);
 		model.addAttribute("tx", "Thêm sản phẩm mới thành công, " + "Tiếp tục thêm sản phẩm mới");
 
-		return "redirect:/ban-hang/them-san-pham-moi";
+		return "redirect:/quan-ly/san-pham/them-san-pham-moi";
 
 	}
 
@@ -157,7 +234,7 @@ public class SanPhamController {
 
 		TaiKhoan taiKhoan = taiKhoanRepository
 				.findByTenTaiKhoanEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-		NguoiDung khachHang = taiKhoan.getNguoiDung();
+		NguoiDung khachHang = new NguoiDung("4028818d79541fa60179542a1dbe0000");
 
 		sanPham.setId(id);
 	
@@ -166,46 +243,46 @@ public class SanPhamController {
 		sanPham = sanPhamRepository.findbyId(id);
 				
 
-		File filecv = this.amazonClient.convertMultiPartToFile(file);
-		String fileName = this.amazonClient.generateFileName(file);
-		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
-		if(this.amazonClient.uploadFileTos3bucket(fileName, filecv) == true) {
-			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh());
-		}
-		filecv.delete();
-
-		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
-		String fileName1 = this.amazonClient.generateFileName(file1);
-		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
-		if(this.amazonClient.uploadFileTos3bucket(fileName1, filecv1) == true) {
-			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh1());
-		}
-		filecv1.delete();
-
-		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
-		String fileName2 = this.amazonClient.generateFileName(file2);
-		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
-		if(this.amazonClient.uploadFileTos3bucket(fileName2, filecv2) == true) {
-			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh2());
-		}
-		filecv2.delete();
-
-		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
-		String fileName3 = this.amazonClient.generateFileName(file3);
-		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
-		if(this.amazonClient.uploadFileTos3bucket(fileName3, filecv3) == true) {
-			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh3());
-		}
-		filecv3.delete();
-
-			sanPham.setHinhAnh(fileUrl);
-			sanPham.setHinhAnh1(fileUrl1);
-			sanPham.setHinhAnh2(fileUrl2);
-			sanPham.setHinhAnh3(fileUrl3);
+//		File filecv = this.amazonClient.convertMultiPartToFile(file);
+//		String fileName = this.amazonClient.generateFileName(file);
+//		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
+//		if(this.amazonClient.uploadFileTos3bucket(fileName, filecv) == true) {
+//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh());
+//		}
+//		filecv.delete();
+//
+//		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
+//		String fileName1 = this.amazonClient.generateFileName(file1);
+//		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
+//		if(this.amazonClient.uploadFileTos3bucket(fileName1, filecv1) == true) {
+//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh1());
+//		}
+//		filecv1.delete();
+//
+//		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
+//		String fileName2 = this.amazonClient.generateFileName(file2);
+//		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
+//		if(this.amazonClient.uploadFileTos3bucket(fileName2, filecv2) == true) {
+//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh2());
+//		}
+//		filecv2.delete();
+//
+//		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
+//		String fileName3 = this.amazonClient.generateFileName(file3);
+//		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
+//		if(this.amazonClient.uploadFileTos3bucket(fileName3, filecv3) == true) {
+//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh3());
+//		}
+//		filecv3.delete();
+//
+//			sanPham.setHinhAnh(fileUrl);
+//			sanPham.setHinhAnh1(fileUrl1);
+//			sanPham.setHinhAnh2(fileUrl2);
+//			sanPham.setHinhAnh3(fileUrl3);
 		
 
 		sanPhamRepository.saveSanPham(sanPham);
-
+		System.out.println(sanPham);
 		model.addAttribute("tx", "Thêm sản phẩm mới thành công, " + "Tiếp tục thêm sản phẩm mới");
 		return "redirect:/ban-hang/san-pham-cua-ban";
 	}

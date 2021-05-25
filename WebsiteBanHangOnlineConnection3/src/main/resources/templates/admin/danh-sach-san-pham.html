@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Quản Lý - Sản Phẩm || CONNECTION</title>
+<title>Quản Lý - Sản Phẩm || ABC Store</title>
 <div th:replace="/bocuc/bo-cuc-giao-dien-admin :: header"></div>
 </head>
 <body>
@@ -52,7 +52,7 @@
 									<div class="card">
 										<div class="card-body">
 											<h4 class="card-title">Danh Sách Sản Phẩm</h4>
-											<button type="button" class="btn btn-dark">Thêm Mới</button>
+											<button type="button" class="btn btn-dark" onclick="dieu_huong()">Thêm Mới</button>
 											<table class="table table-hover">
 												<thead>
 													<tr>
@@ -84,10 +84,10 @@
 
 														<td>
 														<a th:data-thing="${sanpham.id}" href="#xoaSanPham" data-toggle="modal" onclick="chuyenModalXoa(this.getAttribute('data-thing')); cot(this);"  ><i style="color: red; "    class="mdi mdi-close"></i></a>
-														<a th:data-thing="${sanpham.id}" href="#xemChiTietSP" data-toggle="modal" onclick="xemChiTietSP(this.getAttribute('data-thing'))"   ><i class="mdi mdi-border-color"></i></a>
+														<!--  <a th:data-thing="${sanpham.id}" href="#xemChiTietSP" data-toggle="modal" onclick="xemChiTietSP(this.getAttribute('data-thing'))"   ><i class="mdi mdi-border-color"></i></a>
 															<a th:if="${sanpham.trangThai==false}"
 																th:data-thing="${sanpham.id}" data-toggle="modal"  href="#xacNhanTaiKhoan" id="xacNhan" onclick="xacNhanSP(this.getAttribute('data-thing'))"    ><i
-																	class="mdi mdi-check"></i></a>
+																	class="mdi mdi-check"></i></a>-->
 														</td>
 													</tr>
 												</th:block>
@@ -138,14 +138,14 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" onclick="khoaSanPham();" id="khoaTK" class="btn btn-primary">Khóa Sản Phẩm</button>
+					
 					<button type="button"  id="xoaTK" class="btn btn-danger">Xóa Sản Phẩm</button>
-					<button type="button" onclick="xoaXoaSanPham();" id="xoaTK" class="btn btn-dark">Sản Phẩm Vi Phạm</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="xemChiTietSP" tabindex="-1" th:fragment="view" role="dialog" aria-hidden="true">
+	<!--  div class="modal fade" id="xemChiTietSP" tabindex="-1" th:fragment="view" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -205,7 +205,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	
 </body>
 <script type="text/javascript">
@@ -227,7 +227,11 @@ var currentPage = "[[${currentPage}]]";
 	function chuyenModalXoa(id) {
 		$('#xoaSanPham #idxoa').val(id);
 	}
-
+	
+     function dieu_huong(){
+         location.assign("them-san-pham-moi");
+     }
+ 
 	
 </script>
 </html>

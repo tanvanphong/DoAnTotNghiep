@@ -207,7 +207,7 @@ public class SanPhamController {
 //		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
 //		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
 //		filecv.delete();
-	     String url1="http://192.168.1.3:8090/";
+	     String url1="http://192.168.1.2:8090/";
 		sanPham.setHinhAnh(url1+imagePath.resolve(( file).getOriginalFilename()).toString());
 		sanPham.setHinhAnh1(url1+imagePath.resolve(( file1).getOriginalFilename()).toString());
 		sanPham.setHinhAnh2(url1+imagePath.resolve(( file2).getOriginalFilename()).toString());
@@ -294,7 +294,6 @@ public class SanPhamController {
 		
 
 		sanPhamRepository.saveSanPham(sanPham);
-		System.out.println(sanPham);
 		model.addAttribute("tx", "Thêm sản phẩm mới thành công, " + "Tiếp tục thêm sản phẩm mới");
 		return "redirect:/ban-hang/san-pham-cua-ban";
 	}

@@ -33,8 +33,6 @@ function khoaTaiKhoan() {
 function xoaTaiKhoan() {
 	if (confirm('Bạn thực sự muốn xóa tài khoản!!')) {
 		var id = document.getElementById("idxoa").value;
-
-
 		$.ajax({
 			type: "GET",
 			url: "/quan-ly/tai-khoan/xoa-tai-khoan/" + id,
@@ -50,6 +48,21 @@ function xoaTaiKhoan() {
 		return false;
 	}
 }
+			function xoaSanPham() {
+				if (confirm('Bạn thực sự muốn xóa sản phẩm!!')) {
+					var id = document.getElementById("idxoa").value;
+					$.ajax({
+						type: "GET",
+						url: "/quan-ly/san-pham/xoa-san-pham/" + id,
+					}).done(function(resultMsgDiv) {
+						alert("Xác nhận: Xóa thành công sản phẩm!!!");
+						$('#xoaSanPham').modal('hide');
+						location.reload();
+					})
+				} else {
+					return false;
+				}
+			}
 
 function chuyenModalXoa(id) {
 	$('#xoaSanPham #idxoa').val(id);

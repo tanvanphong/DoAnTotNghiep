@@ -207,11 +207,11 @@ public class SanPhamController {
 //		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
 //		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
 //		filecv.delete();
-
-		sanPham.setHinhAnh(imagePath.resolve(( file).getOriginalFilename()).toString());
-		sanPham.setHinhAnh1(imagePath.resolve(( file1).getOriginalFilename()).toString());
-		sanPham.setHinhAnh2(imagePath.resolve(( file2).getOriginalFilename()).toString());
-		sanPham.setHinhAnh3(imagePath.resolve(( file3).getOriginalFilename()).toString());
+	     String url1="http://192.168.1.3:8090/";
+		sanPham.setHinhAnh(url1+imagePath.resolve(( file).getOriginalFilename()).toString());
+		sanPham.setHinhAnh1(url1+imagePath.resolve(( file1).getOriginalFilename()).toString());
+		sanPham.setHinhAnh2(url1+imagePath.resolve(( file2).getOriginalFilename()).toString());
+		sanPham.setHinhAnh3(url1+imagePath.resolve(( file3).getOriginalFilename()).toString());
 //		sanPham.setHinhAnh1(fileUrl1);
 //		sanPham.setHinhAnh2(fileUrl2);
 //		sanPham.setHinhAnh3(fileUrl3);

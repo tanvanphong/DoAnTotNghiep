@@ -1,6 +1,10 @@
 package com.iuh.ABCStore.controller;
 
 import java.io.File;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -70,6 +74,7 @@ public class SanPhamController {
 	@Value("${s3.bucketName}")
 	private String bucketName;
 
+	private static final Path CURRENT_FOLDER = Paths.get(System.getProperty("user.dir"));
 
 //	@RequestMapping("/quan-ly/san-pham/them-san-pham-moi")
 //	public String saveSanPham(Model model, @ModelAttribute("danhMuc") DanhMuc danhMuc,
@@ -171,38 +176,47 @@ public class SanPhamController {
 		sanPham.setNguoiDung(khachHang);
 		sanPham.setTrangThai("Đã Xác Nhận");
 		sanPham.setNgayTao(LocalDate.now());
-
 		
+		Path staticPath=Paths.get("static");
+		Path imagePath=Paths.get("images");
+		if(!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
+            Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
+        }
+		 Path anhdaidien = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhdaidien)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu1 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file1.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu1)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu2 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file2.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu2)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu3 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file3.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu3)) {
+	            os.write(file.getBytes());
+	        }
 //		File filecv = this.amazonClient.convertMultiPartToFile(file);
 //		String fileName = this.amazonClient.generateFileName(file);
 //		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
 //		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
 //		filecv.delete();
-//
-//		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
-//		String fileName1 = this.amazonClient.generateFileName(file1);
-//		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
-//		this.amazonClient.uploadFileTos3bucket(fileName1, filecv1);
-//		filecv1.delete();
-//
-//		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
-//		String fileName2 = this.amazonClient.generateFileName(file2);
-//		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
-//		this.amazonClient.uploadFileTos3bucket(fileName2, filecv2);
-//		filecv2.delete();
-//
-//		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
-//		String fileName3 = this.amazonClient.generateFileName(file3);
-//		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
-//		this.amazonClient.uploadFileTos3bucket(fileName3, filecv3);
-//		filecv3.delete();
-//
-//		sanPham.setHinhAnh(fileUrl);
+
+		sanPham.setHinhAnh(imagePath.resolve(( file).getOriginalFilename()).toString());
+		sanPham.setHinhAnh1(imagePath.resolve(( file1).getOriginalFilename()).toString());
+		sanPham.setHinhAnh2(imagePath.resolve(( file2).getOriginalFilename()).toString());
+		sanPham.setHinhAnh3(imagePath.resolve(( file3).getOriginalFilename()).toString());
 //		sanPham.setHinhAnh1(fileUrl1);
 //		sanPham.setHinhAnh2(fileUrl2);
 //		sanPham.setHinhAnh3(fileUrl3);
 
-		System.err.println(sanPham);
+//		System.err.println(sanP ham);
 
 		sanPhamRepository.saveSanPham(sanPham);
 		model.addAttribute("tx", "Thêm sản phẩm mới thành công, " + "Tiếp tục thêm sản phẩm mới");
@@ -291,14 +305,14 @@ public class SanPhamController {
 	public String xoaSanPham(@PathVariable(name = "id") String id) {
 
 		SanPham sp = sanPhamRepository.findSanPhamById(id).get();
-		if (sanPhamRepository.deleteSanPham(sp) == true) {
-
-			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh());
-			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh1());
-			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh2());
-			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh3());
-
-		}
+//		if (sanPhamRepository.deleteSanPham(sp) == true) {
+//
+//			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh());
+//			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh1());
+//			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh2());
+//			this.amazonClient.deleteFileFromS3Bucket(sp.getHinhAnh3());
+//
+//		}
 
 		return "redirect:/ban-hang/san-pham-cua-ban";
 	}
@@ -366,7 +380,7 @@ public class SanPhamController {
 	}
 
 
-	@RequestMapping(value = "/san-pham/{id}")
+	@RequestMapping(value = "/{id}")
 	public String getChitietSanPham(Model model, @PathVariable(name = "id") String id) {
 		Optional<SanPham> sp = sanPhamRepository.findSanPhamById(id);
 		sp.isPresent();

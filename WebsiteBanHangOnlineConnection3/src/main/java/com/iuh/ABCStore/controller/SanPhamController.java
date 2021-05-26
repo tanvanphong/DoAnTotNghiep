@@ -256,43 +256,41 @@ public class SanPhamController {
 		
 		sanPham = sanPhamRepository.findbyId(id);
 				
-
+		Path staticPath=Paths.get("static");
+		Path imagePath=Paths.get("images");
+		if(!Files.exists(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath))) {
+            Files.createDirectories(CURRENT_FOLDER.resolve(staticPath).resolve(imagePath));
+        }
+		 Path anhdaidien = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhdaidien)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu1 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file1.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu1)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu2 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file2.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu2)) {
+	            os.write(file.getBytes());
+	        }
+	        Path anhPhu3 = CURRENT_FOLDER.resolve(staticPath)
+	                .resolve(imagePath).resolve(file3.getOriginalFilename());
+	        try (OutputStream os = Files.newOutputStream(anhPhu3)) {
+	            os.write(file.getBytes());
+	        }
 //		File filecv = this.amazonClient.convertMultiPartToFile(file);
 //		String fileName = this.amazonClient.generateFileName(file);
 //		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
-//		if(this.amazonClient.uploadFileTos3bucket(fileName, filecv) == true) {
-//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh());
-//		}
+//		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
 //		filecv.delete();
-//
-//		File filecv1 = this.amazonClient.convertMultiPartToFile(file1);
-//		String fileName1 = this.amazonClient.generateFileName(file1);
-//		String fileUrl1 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName1;
-//		if(this.amazonClient.uploadFileTos3bucket(fileName1, filecv1) == true) {
-//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh1());
-//		}
-//		filecv1.delete();
-//
-//		File filecv2 = this.amazonClient.convertMultiPartToFile(file2);
-//		String fileName2 = this.amazonClient.generateFileName(file2);
-//		String fileUrl2 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName2;
-//		if(this.amazonClient.uploadFileTos3bucket(fileName2, filecv2) == true) {
-//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh2());
-//		}
-//		filecv2.delete();
-//
-//		File filecv3 = this.amazonClient.convertMultiPartToFile(file3);
-//		String fileName3 = this.amazonClient.generateFileName(file3);
-//		String fileUrl3 = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName3;
-//		if(this.amazonClient.uploadFileTos3bucket(fileName3, filecv3) == true) {
-//			this.amazonClient.deleteFileFromS3Bucket(sanPham.getHinhAnh3());
-//		}
-//		filecv3.delete();
-//
-//			sanPham.setHinhAnh(fileUrl);
-//			sanPham.setHinhAnh1(fileUrl1);
-//			sanPham.setHinhAnh2(fileUrl2);
-//			sanPham.setHinhAnh3(fileUrl3);
+
+		sanPham.setHinhAnh(imagePath.resolve(( file).getOriginalFilename()).toString());
+		sanPham.setHinhAnh1(imagePath.resolve(( file1).getOriginalFilename()).toString());
+		sanPham.setHinhAnh2(imagePath.resolve(( file2).getOriginalFilename()).toString());
+		sanPham.setHinhAnh3(imagePath.resolve(( file3).getOriginalFilename()).toString());
 		
 
 		sanPhamRepository.saveSanPham(sanPham);

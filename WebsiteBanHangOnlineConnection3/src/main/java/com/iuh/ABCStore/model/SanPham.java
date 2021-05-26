@@ -71,9 +71,7 @@ public class SanPham implements Serializable {
 	@JoinColumn(name = "nguoi_dung_id", referencedColumnName = "id")
 	private NguoiDung nguoiDung;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "khuyen_mai_id", referencedColumnName = "id")
-	private KhuyenMai khuyenMai;
+
 	
 
 	public SanPham() {
@@ -263,13 +261,7 @@ public class SanPham implements Serializable {
 		this.nguoiDung = nguoiDung;
 	}
 
-	public KhuyenMai getKhuyenMai() {
-		return khuyenMai;
-	}
 
-	public void setKhuyenMai(KhuyenMai khuyenMai) {
-		this.khuyenMai = khuyenMai;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

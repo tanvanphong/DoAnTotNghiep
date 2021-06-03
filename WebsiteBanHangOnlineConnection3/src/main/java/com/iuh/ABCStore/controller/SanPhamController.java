@@ -49,6 +49,7 @@ import com.iuh.ABCStore.services.IDanhGiaService;
 import com.iuh.ABCStore.services.IDanhMucService;
 import com.iuh.ABCStore.services.ISanPhamService;
 import com.iuh.ABCStore.utils.AmazonClient;
+import com.iuh.ABCStore.utils.Utils;
 
 @Controller
 @ComponentScan("com.iuh.BanHangOnline.services")
@@ -207,8 +208,9 @@ public class SanPhamController {
 //		String fileUrl = "http://" + bucketName + ".s3.us-east-2.amazonaws.com/" + fileName;
 //		this.amazonClient.uploadFileTos3bucket(fileName, filecv);
 //		filecv.delete();
-	     String url1="http://192.168.1.2:8090/";
-		sanPham.setHinhAnh(url1+imagePath.resolve(( file).getOriginalFilename()).toString());
+//	     String url1="http://192.168.1.2:8090/";
+	        String url1="http://"+Utils.urlID()+":8090/";
+	        sanPham.setHinhAnh(url1+imagePath.resolve(( file).getOriginalFilename()).toString());
 		sanPham.setHinhAnh1(url1+imagePath.resolve(( file1).getOriginalFilename()).toString());
 		sanPham.setHinhAnh2(url1+imagePath.resolve(( file2).getOriginalFilename()).toString());
 		sanPham.setHinhAnh3(url1+imagePath.resolve(( file3).getOriginalFilename()).toString());
@@ -382,7 +384,7 @@ public class SanPhamController {
 		Optional<SanPham> sp = sanPhamRepository.findSanPhamById(id);
 		sp.isPresent();
 		DanhGia danhgia = new DanhGia();
-		danhgia.setSanPham(sp.get());
+		//danhgia.setSanPham(sp.get());
 
 		if (sp.isPresent()) {
 			model.addAttribute("sanpham", sp.get());

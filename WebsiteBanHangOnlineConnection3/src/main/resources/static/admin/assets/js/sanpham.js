@@ -54,11 +54,15 @@ function xoaTaiKhoan() {
 					$.ajax({
 						type: "GET",
 						url: "/quan-ly/san-pham/xoa-san-pham/" + id,
+						
 					}).done(function(resultMsgDiv) {
 						alert("Xác nhận: Xóa thành công sản phẩm!!!");
 						$('#xoaSanPham').modal('hide');
 						location.reload();
-					})
+					}).fail(function(e) {
+			
+			location.reload();
+		});
 				} else {
 					return false;
 				}
